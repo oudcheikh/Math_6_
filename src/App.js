@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Accueil from './composents/Accueil';
+import TopBarWithDrawer from './TopBarWithDrawer';
+import { useLanguage } from './LanguageProvider';
+import { useNavigate } from 'react-router-dom';
+import { Button } from "@mui/material";
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import BookIcon from '@mui/icons-material/Book';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 import C1 from './composents/C1/C1';
 import C2 from './composents/C2/C2';
 import C3 from './composents/C3/C3';
@@ -34,60 +47,95 @@ import Chap13 from'./composents/C16/Chap13';
 import Fraction2 from './composents/M5/Fraction2';
 import Periode1 from './composents/Periode1';
 import Periode2 from './composents/Periode2';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+
+import MathChapters from "./composents/MathChapitre";
+import Revisions from "./composents/Revision";
 
 
 
 function App() {
+
+  const [value, setValue] = useState(0);
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const { toggleLanguage, t } = useLanguage();
+  const navigate = useNavigate();
+
+ 
+
+  const toggleDrawer = (open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setDrawerOpen(open);
+  };
+  
   return (
-    <Router>
-      <div className="App">
+   
        
-        <Routes>
-           
-          <Route path= "/" element={<Accueil/>} />
-          
-          <Route path="/C1" element ={<C1/>}/>
-          <Route path="/C2" element ={<C2/>}/>
-          <Route path="/C3" element ={<C3/>}/>
-          <Route path="/C4" element ={<C4/>}/>
-          <Route path="/C5A1" element ={<C5/>}/>
-         
-          <Route path="/C5A3" element ={<C5A3/>}/>
-          <Route path="/C5A4" element ={<C5A4/>}/>
-          <Route path="/Kangaroo" element ={<Kangaroo/>}/>
-          <Route path="/C5A5" element ={<C5A5/>}/>
-          <Route path="/C6" element ={<C6/>}/>
-          <Route path="/C7" element ={<C7/>}/>
-          <Route path="/M2A1" element ={<M2A1/>}/>
-          <Route path="/M2A2" element ={<M2A2/>}/>
-          <Route path="/M2A3" element ={<M2A3/>}/>
-          <Route path="/M2" element ={<M2/>}/>
-          <Route path="/G1" element ={<G1/>}/>
-          <Route path="/G2" element ={<G2/>}/>
-          <Route path="/G1A2" element ={<G1A2/>}/>
-          <Route path="/G3" element ={<G3/>}/>
-          <Route path="/G1" element ={<G1/>}/>
+
+    <div>
+    <TopBarWithDrawer
+        drawerOpen={drawerOpen}
+        setDrawerOpen={setDrawerOpen}
+        toggleLanguage={toggleLanguage}
+        t={t}
+        navigate={navigate}
+      />
+
+        <div style={{ marginTop: 64 }}>
+            <Routes>
+          <Route path="/math-chapters" element={<MathChapters />} />
+          <Route path="/" element={value === 0 ? <Revisions /> : null} />
           <Route path="/Periode1" element ={<Periode1/>}/>
           <Route path="/Periode2" element ={<Periode2/>}/>
-          <Route path="/P2A1A" element ={<P2A1A/>}/>
-          <Route path="/P2A1C" element ={<P2A1C/>}/>
-          <Route path="/P2A1B" element ={<P2A1B/>}/>
-          <Route path="/P3A3" element ={<P3A3/>}/>
-          <Route path="/P3A4" element ={<P3A4/>}/>
-          <Route path="/P3A5" element ={<P3A5/>}/>
-          <Route path="/P3A6" element ={<P3A6/>}/>
-          <Route path="/P3A7" element ={<P3A7/>}/>
-          <Route path="/P3A8" element ={<P3A8/>}/>
-          <Route path="/Chap13" element ={<Chap13/>}/>
-          <Route path="/Aire2" element ={<Aire2/>}/>
-          <Route path="/Fraction2" element ={<Fraction2/>}/>
-         
+          <Route path="/C1" element ={<C1/>}/>
+           <Route path="/C2" element ={<C2/>}/>
+           <Route path="/C3" element ={<C3/>}/>
+           <Route path="/C4" element ={<C4/>}/>
+           <Route path="/C5A1" element ={<C5/>}/>    
+           <Route path="/C5A3" element ={<C5A3/>}/>
+           <Route path="/C5A4" element ={<C5A4/>}/>
+           <Route path="/Kangaroo" element ={<Kangaroo/>}/>
+           <Route path="/C5A5" element ={<C5A5/>}/>
+           <Route path="/C6" element ={<C6/>}/>
+           <Route path="/C7" element ={<C7/>}/>
+           <Route path="/M2A1" element ={<M2A1/>}/>
+           <Route path="/M2A2" element ={<M2A2/>}/>
+           <Route path="/M2A3" element ={<M2A3/>}/>
+           <Route path="/M2" element ={<M2/>}/>
+           <Route path="/G1" element ={<G1/>}/>
+           <Route path="/G2" element ={<G2/>}/>
+           <Route path="/G1A2" element ={<G1A2/>}/>
+           <Route path="/G3" element ={<G3/>}/>
+           <Route path="/G1" element ={<G1/>}/>
+           <Route path="/P2A1A" element ={<P2A1A/>}/>
+           <Route path="/P2A1C" element ={<P2A1C/>}/>
+           <Route path="/P2A1B" element ={<P2A1B/>}/>
+           <Route path="/P3A3" element ={<P3A3/>}/>
+           <Route path="/P3A4" element ={<P3A4/>}/>
+           <Route path="/P3A5" element ={<P3A5/>}/>
+           <Route path="/P3A6" element ={<P3A6/>}/>
+           <Route path="/P3A7" element ={<P3A7/>}/>
+           <Route path="/P3A8" element ={<P3A8/>}/>
+           <Route path="/Chap13" element ={<Chap13/>}/>
+           <Route path="/Aire2" element ={<Aire2/>}/>
+           <Route path="/Fraction2" element ={<Fraction2/>}/>
+          {/* Ajoutez des composants pour les autres onglets ici en utilisant <Route> */}
         </Routes>
-      
+        </div>
       </div>
-    </Router>
+   
+      
+     
   )
 }
 
 export default App;
- 
