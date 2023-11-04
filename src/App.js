@@ -56,6 +56,7 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 
 import MathChapters from "./composents/MathChapitre";
 import Revisions from "./composents/Revision";
+import ScoreBoard from "./composents/scoreBoard"
 
 
 
@@ -95,6 +96,7 @@ function App() {
           <Route path="/math-chapters" element={<MathChapters />} />
           <Route path="/" element={value === 0 ? <Revisions /> : null} />
           <Route path="/Periode1" element ={<Periode1/>}/>
+          <Route path="/scoreboard" element ={<ScoreBoard/>}/>
           <Route path="/Periode2" element ={<Periode2/>}/>
           <Route path="/C1" element ={<C1/>}/>
            <Route path="/C2" element ={<C2/>}/>

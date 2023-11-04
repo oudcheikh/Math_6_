@@ -1,12 +1,12 @@
 // translations.js
 const translations = {
     fr: {
-      myAccount: "Mon compte",
+      myScore: "Mon Score",
       myCourses: "Mes cours",
       // ... autres traductions
     },
     ar: {
-      myAccount: "حسابي",
+      myScore: "حسابي",
       myCourses: "دوراتي",
       // ... autres traductions
     }

@@ -30,6 +30,11 @@ function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, naviga
     setDrawerOpen(false); // Ferme le tiroir lors de la navigation
   };
 
+  const goToScoreboard = () => {
+    navigate('/scoreboard');
+    setDrawerOpen(false); // Ferme le tiroir lors de la navigation
+  };
+
   // Gérer le changement de langue ici
   const handleChangeLanguage = (event) => {
     toggleLanguage(event.target.value);
@@ -64,7 +69,6 @@ function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, naviga
               sx={{ color: 'white', '.MuiSvgIcon-root': { color: 'white' } }}
             >
               <MenuItem value="fr">FR</MenuItem>
-              <MenuItem value="en">EN</MenuItem>
               <MenuItem value="ar">عربى</MenuItem>
               {/* Ajouter d'autres langues au besoin */}
             </Select>
@@ -78,9 +82,9 @@ function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, naviga
             <ListItemIcon><BookIcon /></ListItemIcon>
             <ListItemText primary={t('myCourses')} />
           </ListItem>
-          <ListItem button onClick={goToHomePage}>
+          <ListItem button onClick={goToScoreboard}>
             <ListItemIcon><AccountCircleIcon /></ListItemIcon>
-            <ListItemText primary={t('myAccount')} />
+            <ListItemText primary={t('myScore')} />
           </ListItem>
         </List>
       </Drawer>
