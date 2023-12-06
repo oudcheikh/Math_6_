@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Button, Grid, Alert } from "@mui/material";
-import { DndProvider, useDrag, useDrop } from 'react-dnd';
+import { Box, Button, Grid, Alert } from "@mui/material";
+import { DndProvider, useDrag, useDrop, useDragLayer } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend';
+import { isMobile } from 'react-device-detect';
 import styled from "styled-components";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ReplyIcon from '@mui/icons-material/Reply';
+import { Card as Card1 } from '../Styles/MajorStyles';
+
 
 const ItemType = 'card';  
 
@@ -16,38 +22,69 @@ const StyledText = styled.p`
   &:hover {
     transform: scale(1.05);
   }`;
-const ResetButton = styled.button`
-border-radius: 5px;
-background-color: #45a05c;
-margin: 15px 0;
-color: white;
-border: none;
-font-family: "Roboto", sans-serif;
-font-size: 16px;
 
-&:hover {
-  background-color: #0056b3;
-}
-`;
 
-const VerifyButtom = styled.button`
-  border-radius: 5px;
-  background-color: #007bff;
-  margin: 15px 0;
-  color: white;
-  border: none;
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
 
-  &:hover {
-    background-color: #0056b3;
+const layerStyles = {
+  position: 'fixed',
+  pointerEvents: 'none',
+  zIndex: 100,
+  left: 0,
+  top: 0,
+  width: '100%',
+  height: '100%',
+};
+
+function getItemStyles(currentOffset) {
+  if (!currentOffset) {
+    return {
+      display: 'none',
+    };
   }
-`;
+  
+  const { x, y } = currentOffset;
+  const transform = `translate(${x}px, ${y}px)`;
+  return {
+    transform,
+    WebkitTransform: transform,
+  };
+}
+
+const CustomDragLayer = () => {
+  const {
+    itemType,
+    isDragging,
+    item,
+    currentOffset,
+  } = useDragLayer((monitor) => ({
+    item: monitor.getItem(),
+    itemType: monitor.getItemType(),
+    currentOffset: monitor.getSourceClientOffset(),
+    isDragging: monitor.isDragging(),
+  }));
+
+  if (!isDragging) {
+    return null;
+  }
+
+  return (
+    <div style={layerStyles}>
+      <div style={getItemStyles(currentOffset)}>
+        <Button
+          variant="contained"
+          style={{ backgroundColor: '#0000FF', color: 'white' }} 
+        >
+          {item.text}
+        </Button>
+      </div>
+    </div>
+  );
+};
 
 const Card = ({ id, text, moveCard }) => {
   const [{ isDragging }, drag] = useDrag({
     type: ItemType,
-    item: { id },
+    item: { id, text },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
       if (item && dropResult) {
@@ -63,7 +100,7 @@ const Card = ({ id, text, moveCard }) => {
     <Button
       ref={drag}
       variant="contained"
-      style={{ opacity: isDragging ? 0.5 : 1, backgroundColor: '#0000FF', color: 'white' }} 
+      style={{ opacity: isDragging ? 0 : 1, backgroundColor: '#0000FF', color: 'white' }} 
     >
       {text}
     </Button>
@@ -82,7 +119,7 @@ const Slot = ({ id, accept, lastDroppedId, moveCard }) => {
 
   return (
     <Button ref={drop} variant="outlined">
-      {lastDroppedId !== null ? lastDroppedId : 'Vide'}
+      {lastDroppedId !== null ? lastDroppedId : '?'}
     </Button>
   );
 };
@@ -144,18 +181,15 @@ const C2A1 = () => {
   };
 
   return (
-    <DndProvider backend={HTML5Backend}>
+    <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
       <Box>
-        <StyledText >
-          C2A1 : Jeu du plus grand nombre
-        </StyledText>
-        {showResult && (
-          <Alert severity={success ? "success" : "error"}>
-            {success
-              ? "Félicitations, vous avez formé le plus grand nombre possible !"
-              : `Désolé, vous n'avez pas formé le plus grand nombre possible.`}
-          </Alert>
-        )}
+        <CustomDragLayer />
+       <Card1> <StyledText>
+           Formez le  plus grand nombre possible
+        </StyledText></Card1>
+        <br></br>
+        <br></br>
+       
         <Grid container spacing={2} justifyContent="center">
           {cards.map((card, index) => (
             <Grid item key={index}>
@@ -163,8 +197,8 @@ const C2A1 = () => {
             </Grid>
           ))}
         </Grid>
-        <StyledText >
-          Tableau
+        <StyledText>
+        <br></br>
         </StyledText>
         <Grid container spacing={2} justifyContent="center">
           {table.map((slot, index) => (
@@ -175,14 +209,22 @@ const C2A1 = () => {
         </Grid>
         <Grid container spacing={2} justifyContent="center" style={{marginTop: '2em'}}>
           <Grid item>
-            <VerifyButtom onClick={checkResult} disabled={!finished}>
-              OK
-            </VerifyButtom>
+          <Button onClick={checkResult} variant='contained' color='primary' disabled={!finished}>
+              <CheckCircleIcon></CheckCircleIcon>
+            </Button>
           </Grid>
           <Grid item>
-            <ResetButton  onClick={resetGame}>
-              RESET
-            </ResetButton>
+            <Button variant='contained' color='primary' onClick={resetGame}>
+              <ReplyIcon></ReplyIcon>
+            </Button>
+            <br></br>
+            {showResult && (
+          <Alert severity={success ? "success" : "error"}>
+            {success
+              ? "Félicitations, vous avez formé le plus grand nombre possible !"
+              : `Désolé, vous n'avez pas formé le plus grand nombre possible.`}
+          </Alert>
+        )}
           </Grid>
         </Grid>
       </Box>

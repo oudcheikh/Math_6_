@@ -1,0 +1,24 @@
+/* FloatingButton.css */
+.floating-button {
+    position: fixed; /* Reste fixe par rapport à la fenêtre du navigateur */
+    top: 10px; /* Distance du haut de la page */
+    right: 10px; /* Distance du côté droit de la page */
+    z-index: 1000; /* S'assure que le bouton est au-dessus des autres éléments */
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 50%; /* Rend le bouton circulaire */
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    font-size: 20px; /* Taille de la flèche (icône) */
+  }
+  
+  .floating-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .floating-button:focus {
+    outline: none;
+  }
+  

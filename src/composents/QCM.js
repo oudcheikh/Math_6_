@@ -46,7 +46,8 @@ function QCM({ questionsArray }) {
             chapter: questionItem.chapter,
             isCorrect: isAnswerCorrect,
             difficulty: questionItem.difficulty,
-            qcm_id : questionItem.qcm_id
+            qcm_id : questionItem.qcm_id,
+            chapter_root: questionItem.chapter_root
         });
 
         setIsFlipped(questionIndex);

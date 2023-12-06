@@ -5,6 +5,7 @@
     "correctAnswer": "7 milliards",
     "explanation": "Dans le nombre 7492319000, le chiffre 7 représente 7 milliards.",
     "chapter": "Numération",
+    "chapter_root": "/C1",
     "difficulty": "Facile",
     "qcm_id":1
   },
@@ -14,6 +15,7 @@
     "correctAnswer": "4 centaines de millions",
     "explanation": "Dans le nombre 7492319000, le chiffre 4 représente 4 centaines de millions.",
     "chapter": "Numération",
+    "chapter_root": "/C1",
     "difficulty": "Moyen",
     "qcm_id":2
   },
@@ -23,6 +25,7 @@
     "correctAnswer": "9",
     "explanation": "Il y a 9 zéros dans un milliard.",
     "chapter": "Numération",
+    "chapter_root": "/C1",
     "difficulty": "Facile",
     "qcm_id":3
   },
@@ -32,6 +35,7 @@
     "correctAnswer": "9",
     "explanation": "Dans le nombre 7492319000, le chiffre des dizaines de millions est 9.",
     "chapter": "Numération",
+    "chapter_root": "/C1",
     "difficulty": "Moyen",
     "qcm_id":4
   },
@@ -41,6 +45,7 @@
     "correctAnswer": "1 milliard",
     "explanation": "999999999 + 1 = 1000000000, qui est 1 milliard.",
     "chapter":"Numération",
+    "chapter_root": "/C1",
     "difficulty": "Facile",
     "qcm_id":5
   }

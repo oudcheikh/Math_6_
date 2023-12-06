@@ -3,11 +3,13 @@ const translations = {
     fr: {
       myScore: "Mon Score",
       myCourses: "Mes cours",
+      mycompte : "mon comptes"
       // ... autres traductions
     },
     ar: {
-      myScore: "حسابي",
+      myScore: "نتيجتي",
       myCourses: "دوراتي",
+      mycompte : "حسابي"
       // ... autres traductions
     }
   };

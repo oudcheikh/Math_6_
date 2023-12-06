@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import db from './db'; // Assurez-vous que cela pointe vers votre configuration IndexedDB correcte
+import db from './db';
+import ChapterCard from './ChapterCard';
+import { useNavigate } from 'react-router-dom';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 function ScoreBoard() {
+
   const [chapterScores, setChapterScores] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadScores = async () => {
-      // Récupération de toutes les réponses stockées dans IndexedDB
       const allResponses = await db.responses.toArray();
-      
-      // Aggrégation des réponses par chapitre
+
       const scores = allResponses.reduce((acc, response) => {
-        const { chapter, isCorrect } = response;
+        const { chapter, chapter_root, isCorrect } = response;
+
         if (!acc[chapter]) {
-          acc[chapter] = { total: 0, correct: 0 };
+          acc[chapter] = { total: 0, correct: 0, chapter_root: chapter_root };
         }
         acc[chapter].total++;
         if (isCorrect) {
@@ -21,8 +26,7 @@ function ScoreBoard() {
         }
         return acc;
       }, {});
-      
-      // Calcul des scores pour chaque chapitre
+
       Object.keys(scores).forEach(chapter => {
         const score = scores[chapter];
         score.percentage = (score.correct / score.total) * 100;
@@ -35,19 +39,23 @@ function ScoreBoard() {
     loadScores();
   }, []);
 
-  // Affichage des scores par chapitre
   return (
     <div>
-      <h1>Tableau des scores par chapitre</h1>
-      {Object.entries(chapterScores).map(([chapter, scoreData]) => (
-        <div key={chapter}>
-          <h2>{`Chapitre: ${chapter}`}</h2>
-          <p>{`Réponses correctes: ${scoreData.correct}/${scoreData.total}`}</p>
-          <p>{`Pourcentage: ${scoreData.percentage.toFixed(2)}%`}</p>
-          <p>{`Évaluation: ${scoreData.evaluation}`}</p>
-        </div>
-      ))}
-    </div>
+    <h1>Tableau des scores par chapitre</h1>
+    {Object.entries(chapterScores).map(([chapter, scoreData]) => (
+      <ChapterCard
+        key={chapter}
+        chapter={`Chapitre: ${chapter}`}
+        title={
+          <div>
+              <p>{`Score: ${scoreData.correct}/${scoreData.total} (${scoreData.percentage.toFixed(2)}%) - ${scoreData.evaluation}`}</p>
+           
+          </div>
+        }
+        onClick={() => navigate(scoreData.chapter_root)}
+      />
+    ))}
+  </div>
   );
 }
 

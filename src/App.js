@@ -14,6 +14,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import BookIcon from '@mui/icons-material/Book';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import InscriptionPage from './Inscription'
 import C1 from './composents/C1/C1';
 import C2 from './composents/C2/C2';
 import C3 from './composents/C3/C3';
@@ -47,6 +48,14 @@ import Chap13 from'./composents/C16/Chap13';
 import Fraction2 from './composents/M5/Fraction2';
 import Periode1 from './composents/Periode1';
 import Periode2 from './composents/Periode2';
+import Science from './composents/Science';
+import EquilibrAlimantaire from './composents/Science/Chapitre1/EquilibreAlimantaire';
+import EquilibrEnergitique from './composents/Science/Chapitre2/EquilibreEnergitique';
+import Desertification from './composents/Science/Chapitre3/Desertification';
+import Pollution from './composents/Science/Chapitre4/Pollution';  
+import EauEtSante from './composents/Science/Chapitre5/EauEtSante';
+import Vaccination from './composents/Science/Chapitre6/Vaccination';
+import Sida from './composents/Science/Chapitre7/Sida';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -96,6 +105,7 @@ function App() {
           <Route path="/math-chapters" element={<MathChapters />} />
           <Route path="/" element={value === 0 ? <Revisions /> : null} />
           <Route path="/Periode1" element ={<Periode1/>}/>
+          <Route path="/mycount" element ={<InscriptionPage/>}/> // InscriptionPage
           <Route path="/scoreboard" element ={<ScoreBoard/>}/>
           <Route path="/Periode2" element ={<Periode2/>}/>
           <Route path="/C1" element ={<C1/>}/>
@@ -130,6 +140,14 @@ function App() {
            <Route path="/Chap13" element ={<Chap13/>}/>
            <Route path="/Aire2" element ={<Aire2/>}/>
            <Route path="/Fraction2" element ={<Fraction2/>}/>
+           <Route path="/Science" element ={<Science/>}/>
+          <Route path="/EquilibrAlimantaire" element ={<EquilibrAlimantaire/>}/>
+          <Route path="/EquilibrEnergitique" element ={<EquilibrEnergitique/>}/>
+          <Route path="/Desertfication" element ={<Desertification/>}/>
+          <Route path="/Pollution" element ={<Pollution/>}/>
+          <Route path="/EauEtSante" element ={<EauEtSante/>}/>
+          <Route path="/Vaccination" element ={<Vaccination/>}/>
+          <Route path="/Sida" element ={<Sida/>}/>
           {/* Ajoutez des composants pour les autres onglets ici en utilisant <Route> */}
         </Routes>
         </div>

@@ -35,6 +35,11 @@ function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, naviga
     setDrawerOpen(false); // Ferme le tiroir lors de la navigation
   };
 
+  const goToMycount = () => {
+    navigate('/mycount');
+    setDrawerOpen(false); // Ferme le tiroir lors de la navigation
+  };
+
   // Gérer le changement de langue ici
   const handleChangeLanguage = (event) => {
     toggleLanguage(event.target.value);
@@ -85,6 +90,11 @@ function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, naviga
           <ListItem button onClick={goToScoreboard}>
             <ListItemIcon><AccountCircleIcon /></ListItemIcon>
             <ListItemText primary={t('myScore')} />
+          </ListItem>
+
+          <ListItem button onClick={goToMycount}>
+            <ListItemIcon><AccountCircleIcon /></ListItemIcon>
+            <ListItemText primary={t('mycompte')} />
           </ListItem>
         </List>
       </Drawer>
