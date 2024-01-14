@@ -163,7 +163,7 @@ const C1 = () => {
  <br></br>
  <br></br>
 
-{section >= 6 && (
+        {section >= 6 && (
                 <div>
                     <QCMC1 />
                 </div>

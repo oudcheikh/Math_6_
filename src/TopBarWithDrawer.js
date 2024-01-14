@@ -96,6 +96,11 @@ function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, naviga
             <ListItemIcon><AccountCircleIcon /></ListItemIcon>
             <ListItemText primary={t('mycompte')} />
           </ListItem>
+
+          <ListItem button onClick={goToMycount}>
+            <ListItemIcon><AccountCircleIcon /></ListItemIcon>
+            <ListItemText primary={t('devoirs')} />
+          </ListItem>
         </List>
       </Drawer>
     </>

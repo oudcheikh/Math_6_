@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { myapp, dbf, auth} from './firebase'; // Importez directement app et dbf depuis le fichier firebase
+
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Accueil from './composents/Accueil';
 import TopBarWithDrawer from './TopBarWithDrawer';
 import { useLanguage } from './LanguageProvider';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@mui/material";
 import Drawer from '@mui/material/Drawer';
+import QuizTest from './composents/home/QuizTest';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -48,7 +51,31 @@ import Chap13 from'./composents/C16/Chap13';
 import Fraction2 from './composents/M5/Fraction2';
 import Periode1 from './composents/Periode1';
 import Periode2 from './composents/Periode2';
+import Islamique from './composents/Islamique';
 import Science from './composents/Science';
+import Histoire from './composents/Histoire';
+import Hist1 from './composents/Histoire/Chapitre1/hist1';
+import Islamique1 from './composents/Islam/Chapitre1/Islamique1';
+import Islamique2 from './composents/Islam/Chapitre2/Islamique2';
+import Islamique3 from './composents/Islam/Chapitre3/Islamique3';
+import Islamique4 from './composents/Islam/Chapitre4/Islamique4';
+import Hist2 from './composents/Histoire/Chapitre2/hist2';
+import Hist3 from './composents/Histoire/Chapitre3/hist3';
+import Hist4 from './composents/Histoire/Chapitre4/hist4';
+import Hist5 from './composents/Histoire/Chapitre5/hist5';
+import Hist6 from './composents/Histoire/Chapitre6/hist6';
+import Hist7 from './composents/Histoire/Chapitre7/hist7';
+import Hist8 from './composents/Histoire/Chapitre8/hist8';
+import Hist9 from './composents/Histoire/Chapitre9/hist9';
+import Hist10 from './composents/Histoire/Chapitre10/hist10';
+import Hist11 from './composents/Histoire/Chapitre11/hist11';
+import Hist12 from './composents/Histoire/Chapitre12/hist12';
+import Hist13 from './composents/Histoire/Chapitre13/hist13';
+import Hist14 from './composents/Histoire/Chapitre14/hist14';
+import Hist15 from './composents/Histoire/Chapitre15/hist15';
+import Hist16 from './composents/Histoire/Chapitre16/hist16';
+import Hist17 from './composents/Histoire/Chapitre17/hist17';
+import Hist18 from './composents/Histoire/Chapitre18/hist18';
 import EquilibrAlimantaire from './composents/Science/Chapitre1/EquilibreAlimantaire';
 import EquilibrEnergitique from './composents/Science/Chapitre2/EquilibreEnergitique';
 import Desertification from './composents/Science/Chapitre3/Desertification';
@@ -78,6 +105,28 @@ function App() {
   const { toggleLanguage, t } = useLanguage();
   const navigate = useNavigate();
 
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        setUser(authUser);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+   // Configurer la persistance de l'authentification au niveau local
+  //  useEffect(() => {
+  //   const persistence = auth.Auth.Persistence.LOCAL;
+  //   auth.setPersistence(persistence);
+  // }, []);
+
  
 
   const toggleDrawer = (open) => (event) => {
@@ -103,10 +152,19 @@ function App() {
         <div style={{ marginTop: 64 }}>
             <Routes>
           <Route path="/math-chapters" element={<MathChapters />} />
-          <Route path="/" element={value === 0 ? <Revisions /> : null} />
-          <Route path="/Periode1" element ={<Periode1/>}/>
+          <Route path= "/QuizTest" element={<QuizTest/>} />
+          
+          <Route
+          path="/"
+          element={user ? <Revisions /> : <Navigate to="/mycount" />}
+        />
+          
           <Route path="/mycount" element ={<InscriptionPage/>}/> // InscriptionPage
-          <Route path="/scoreboard" element ={<ScoreBoard/>}/>
+          <Route path="/scoreboard" 
+          element ={user ? <ScoreBoard/> : <Navigate to="/mycount" />}
+          />
+
+          <Route path="/Periode1" element ={<Periode1/>}/>
           <Route path="/Periode2" element ={<Periode2/>}/>
           <Route path="/C1" element ={<C1/>}/>
            <Route path="/C2" element ={<C2/>}/>
@@ -148,6 +206,34 @@ function App() {
           <Route path="/EauEtSante" element ={<EauEtSante/>}/>
           <Route path="/Vaccination" element ={<Vaccination/>}/>
           <Route path="/Sida" element ={<Sida/>}/>
+         
+          <Route path="/Islamique" element ={<Islamique/>}/>
+          <Route path="/Science" element ={<Science/>}/>
+          <Route path="/Histoire" element ={<Histoire/>}/>
+          <Route path="/Hist1" element ={<Hist1/>}/>
+          <Route path="/Hist2" element ={<Hist2/>}/>
+          <Route path="/Hist3" element ={<Hist3/>}/>
+          <Route path="/Hist4" element ={<Hist4/>}/>
+          <Route path="/Hist5" element ={<Hist5/>}/>
+          <Route path="/Hist6" element ={<Hist6/>}/>
+          <Route path="/Hist7" element ={<Hist7/>}/>
+          <Route path="/Hist8" element ={<Hist8/>}/>
+          <Route path="/Hist9" element ={<Hist9/>}/>
+          <Route path="/Hist10" element ={<Hist10/>}/>
+          <Route path="/Hist11" element ={<Hist11/>}/>
+          <Route path="/Hist12" element ={<Hist12/>}/>
+          <Route path="/Hist13" element ={<Hist13/>}/>
+          <Route path="/Hist14" element ={<Hist14/>}/>
+          <Route path="/Hist15" element ={<Hist15/>}/>
+          <Route path="/Hist16" element ={<Hist16/>}/>
+          <Route path="/Hist17" element ={<Hist17/>}/>
+          <Route path="/Hist18" element ={<Hist18/>}/>
+          <Route path="/Islamique1" element ={<Islamique1/>}/>
+          <Route path="/Islamique2" element ={<Islamique2/>}/>
+          <Route path="/Islamique3" element ={<Islamique3/>}/>
+          <Route path="/Islamique4" element ={<Islamique4/>}/>   
+
+
           {/* Ajoutez des composants pour les autres onglets ici en utilisant <Route> */}
         </Routes>
         </div>

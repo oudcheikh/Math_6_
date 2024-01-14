@@ -42,6 +42,27 @@ export const Card = styled.div`
   }
 `;
 
+export const SmallCard = styled.div`
+  all: unset;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  height: 60px;
+    width: 98%;
+  margin: 0 8px 16px;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  line-height: 24px;
+  &:hover {
+     box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.15), 0px 5px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+  }
+  `;
+
 export const BodyText = styled.p`
 padding: 10px 20px;
 align-items: center;
