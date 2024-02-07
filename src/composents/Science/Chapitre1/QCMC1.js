@@ -23,14 +23,17 @@ function QCMC1(){
   
 
 return(
-        <div> <QCM questionsArray = {[
+        <div> <QCM questionsArray = {
+          
+          // équilibrealimentaire
+          [
 
           {
             "question": "Quelle est la valeur de la chiffre 7 dans le nombre 7492319000 ?",
             "answers": ["7 millions", "7 milliards", "7 mille", "7 centaines"],
             "correctAnswer": "7 milliards",
             "explanation": "Dans le nombre 7492319000, le chiffre 7 représente 7 milliards.",
-            "chapter": "Numération",
+            "chapter": "équilibrealimentaire",
             "difficulty": "Facile"
           },
           {

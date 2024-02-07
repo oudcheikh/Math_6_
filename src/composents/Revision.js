@@ -18,7 +18,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import '../composents/home/Major.css';
 // Importez la fonction de synchronisation depuis le fichier où elle est définie
-import { synchronizeWithFirestore } from '../SyncFirebase';
+import { synchronizeWithFirestore, searchByChapter } from '../SyncFirebase';
 
 
 
@@ -81,7 +81,8 @@ function Revisions() {
 
     try {
       // Appelez la fonction de synchronisation avec Firestore
-      await synchronizeWithFirestore();
+      //await synchronizeWithFirestore();
+       await searchByChapter("C3")
 
       setOpenModal(false);
     } catch (error) {
@@ -114,23 +115,37 @@ function Revisions() {
         <Card title="Math" content="" icon={calculator} full navigateTo="/math-chapters" />
         <Card title="التاريخ" content="" icon={historyIcon} full navigateTo="/Histoire" />
         <Card title="التربية الاسلامية" content="" icon={praying} full navigateTo="/Islamique" />
+        <Card title="العربية" content="" icon={praying} full navigateTo="/arabic" />
+
       </div>
 
       <Modal
-        open={openModal}
-        onClose={handleCloseModal}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-          Synchronisation en cours...
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Attendez que la synchronisation se termine.
-          </Typography>
-        </Box>
-      </Modal>
+    open={openModal}
+    onClose={handleCloseModal}
+    aria-labelledby="modal-modal-title"
+    aria-describedby="modal-modal-description"
+>
+    <Box sx={{ 
+        width: '80%', // Définir la largeur de la modal
+        maxWidth: 400, // Définir la largeur maximale de la modal
+        mx: 'auto', // Centrer horizontalement la modal
+        mt: 4 // Ajouter une marge en haut
+    }}>
+        <Grid container spacing={2} alignItems="center" justifyContent="center">
+            <Grid item xs={12}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                    Synchronisation en cours...
+                </Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <Typography id="modal-modal-description">
+                    Attendez que la synchronisation se termine.
+                </Typography>
+            </Grid>
+        </Grid>
+    </Box>
+</Modal>
+
 
 
 

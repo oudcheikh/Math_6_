@@ -1,26 +1,122 @@
 [
     {
-        "question": "Quel est le résultat de (12 345 multiplié par 678) ajouté à 456 789?",
-        "answers": ["8 819 499", "8 819 590", "8 818 500", "8 820 000"],
-        "correctAnswer": "8 819 499",
-        "explanation": "12 345 x 678 = 8 362 710 et 8 362 710 + 456 789 = 8 819 499."
+      "question": "Qu'est-ce que la multiplication ?",
+      "answers": [
+        "Une manière rapide de diviser",
+        "Une manière rapide d'ajouter le même nombre plusieurs fois",
+        "Une manière rapide de soustraire",
+        "Une manière rapide d'additionner des nombres différents"
+      ],
+      "correctAnswer": "Une manière rapide d'ajouter le même nombre plusieurs fois",
+      "explanation": "La multiplication est une opération qui permet d'ajouter le même nombre plusieurs fois.",
+      "chapter": "C6",
+      "difficulty": "Facile",
+      "matiere": "Mathématiques"
     },
     {
-        "question": "Quel est le résultat de (9 876 multiplié par 543) ajouté à 789 123?",
-        "answers": ["6 151 711", "6 142 711", "6 141 701", "6 151 700"],
-        "correctAnswer": "6 151 711",
-        "explanation": "9 876 x 543 = 5 362 588 et 5 362 588 + 789 123 = 6 151 711."
+      "question": "Si tu as 4 boîtes de chocolat, et dans chaque boîte, il y a 8 chocolats, combien de chocolats as-tu en tout ?",
+      "answers": ["16", "24", "32", "40"],
+      "correctAnswer": "32",
+      "explanation": "Tu peux trouver le total de chocolats en multipliant le nombre de boîtes par le nombre de chocolats dans chaque boîte : 4 x 8 = 32.",
+      "chapter": "C6",
+      "difficulty": "Facile",
+      "matiere": "Mathématiques"
     },
     {
-        "question": "Quel est le produit de (25 467 multiplié par 1 234) ajouté à 987 654?",
-        "answers": ["32 395 232", "32 396 232", "32 394 232", "32 395 223"],
-        "correctAnswer": "32 395 232",
-        "explanation": "25 467 x 1 234 = 31 407 578 et 31 407 578 + 987 654 = 32 395 232."
+      "question": "Si tu as 6 arbres dans ton jardin, et chaque arbre a 5 pommes, combien de pommes as-tu au total ?",
+      "answers": ["10", "15", "20", "30"],
+      "correctAnswer": "30",
+      "explanation": "Le total de pommes est obtenu en multipliant le nombre d'arbres par le nombre de pommes sur chaque arbre : 6 x 5 = 30.",
+      "chapter": "C6",
+      "difficulty": "Facile",
+      "matiere": "Mathématiques"
     },
     {
-        "question": "Quel est le résultat de (65 432 multiplié par 321) ajouté à 1 234 567?",
-        "answers": ["22 264 779", "21 264 789", "22 263 779", "21 263 789"],
-        "correctAnswer": "22 264 779",
-        "explanation": "65 432 x 321 = 21 030 212 et 21 030 212 + 1 234 567 = 22 264 779."
+      "question": "Que signifie l'expression 7 x 9 ?",
+      "answers": [
+        "Ajouter 7 à 9",
+        "Multiplier 7 par 9",
+        "Soustraire 9 de 7",
+        "Diviser 7 par 9"
+      ],
+      "correctAnswer": "Multiplier 7 par 9",
+      "explanation": "L'expression 7 x 9 signifie multiplier 7 par 9.",
+      "chapter": "C6",
+      "difficulty": "Moyen",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Combien de pattes ont 6 araignées, sachant qu'une araignée a 8 pattes ?",
+      "answers": ["24", "30", "36", "42"],
+      "correctAnswer": "48",
+      "explanation": "Le total de pattes est obtenu en multipliant le nombre d'araignées par le nombre de pattes sur chaque araignée : 6 x 8 = 48.",
+      "chapter": "C6",
+      "difficulty": "Moyen",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Si tu as 10 cartons, et chaque carton contient 15 livres, combien de livres as-tu en tout ?",
+      "answers": ["100", "120", "150", "200"],
+      "correctAnswer": "150",
+      "explanation": "Le total de livres est obtenu en multipliant le nombre de cartons par le nombre de livres dans chaque carton : 10 x 15 = 150.",
+      "chapter": "C6",
+      "difficulty": "Moyen",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Quelle est la valeur de l'expression 4 x (3 + 2) ?",
+      "answers": ["10", "20", "25", "30"],
+      "correctAnswer": "20",
+      "explanation": "En suivant l'ordre des opérations, on additionne d'abord 3 et 2, puis on multiplie le résultat par 4 : 4 x (3 + 2) = 4 x 5 = 20.",
+      "chapter": "C6",
+      "difficulty": "Moyen",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Si tu multiplies n'importe quel nombre par 10, que se passe-t-il au résultat ?",
+      "answers": [
+        "Le résultat ne change pas",
+        "Le résultat est divisé par 10",
+        "Le résultat est multiplié par 100",
+        "Un zéro est ajouté à la fin du nombre"
+      ],
+      "correctAnswer": "Un zéro est ajouté à la fin du nombre",
+      "explanation": "Quand tu multiplies par 10, tu ajoutes simplement un zéro à la fin du nombre.",
+      "chapter": "C6",
+      "difficulty": "Difficile",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Que représente l'expression 5 x 0 ?",
+      "answers": ["0", "5", "10", "50"],
+      "correctAnswer": "0",
+      "explanation": "Multiplier n'importe quel nombre par 0 donne toujours 0 comme résultat.",
+      "chapter": "C6",
+      "difficulty": "Difficile",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Si tu as 9 joueurs dans une équipe, et chaque joueur a 2 bras, combien de bras as-tu en tout ?",
+      "answers": ["9", "18", "27", "36"],
+      "correctAnswer": "18",
+      "explanation": "Le total de bras est obtenu en multipliant le nombre de joueurs par le nombre de bras sur chaque joueur : 9 x 2 = 18.",
+      "chapter": "C6",
+      "difficulty": "Difficile",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Que se passe-t-il si tu multiplies un nombre pair par un nombre impair ?",
+      "answers": [
+        "Le résultat est pair",
+        "Le résultat est impair",
+        "Le résultat est toujours 1",
+        "Le résultat est toujours 0"
+      ],
+      "correctAnswer": "Le résultat est toujours pair",
+      "explanation": "Le produit de deux nombres pairs est toujours pair, tandis que le produit d'un nombre pair et d'un nombre impair est toujours pair.",
+      "chapter": "C6",
+      "difficulty": "Difficile",
+      "matiere": "Mathématiques"
     }
-]
+  ]
+  

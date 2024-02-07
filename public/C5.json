@@ -1,41 +1,152 @@
 [
     {
-        "question": "Pourquoi l'aire d'un rectangle de 4 cm de long et 2 cm de large est-elle de 8 cm², et comment peut-on vérifier cette mesure en comptant les carrés à l'intérieur ?",
-        "answers": ["1", "2", "3", "4"],
-        "correctAnswer": "1",
-        "explanation": "1"
-      },
- 
-    {
-        "question": "Une piscine rectangulaire mesure 5 mètres de long sur 3 mètres de large. Quelle est l'aire de la surface de l'eau en m², et comment peut-on exprimer cette aire en ares ?",
-        "answers": ["1", "2"],
-        "correctAnswer": "1",
-        "explanation": "1"
+      "question": "Que fait l'utilisation des parenthèses dans une expression mathématique ?",
+      "answers": [
+        "Indique les opérations à faire en premier",
+        "Change l'ordre des chiffres",
+        "Multiplie tous les nombres",
+        "Divise les chiffres"
+      ],
+      "correctAnswer": "Indique les opérations à faire en premier",
+      "explanation": "Les parenthèses indiquent quelles opérations faire en premier dans une expression mathématique.",
+      "chapter": "C5",
+      "difficulty": "Facile",
+      "matiere": "Mathématiques"
     },
     {
-        "question": "Si un triangle a une base de 10 cm et une hauteur de 8 cm, comment calcule-t-on son aire en cm², et pourquoi divise-t-on le produit de la base et de la hauteur par 2 ?",
-        "answers": ["1", "2"],
-        "correctAnswer": "1",
-        "explanation": "1" 
+      "question": "Dans l'expression 5 + (3 x 2), que doit-on faire en premier ?",
+      "answers": [
+        "Additionner 5 et 3",
+        "Multiplier 3 et 2",
+        "Additionner 5, 3 et 2",
+        "Multiplier 5 et 3"
+      ],
+      "correctAnswer": "Multiplier 3 et 2",
+      "explanation": "Les parenthèses indiquent de multiplier 3 par 2 en premier dans cette expression.",
+      "chapter": "C5",
+      "difficulty": "Facile",
+      "matiere": "Mathématiques"
     },
     {
-        "question": "Un cercle a un rayon de 6 cm. Comment calcule-t-on son aire en cm², et pourquoi doit-on utiliser la formule πr² pour cette mesure ?",
-        "answers": ["1", "2"],
-        "correctAnswer": "1",
-        "explanation": "1" 
+      "question": "Que se passe-t-il si on met des parenthèses autour de toute l'expression 4 + 2 x 3 ?",
+      "answers": [
+        "Le résultat ne change pas",
+        "On obtient une erreur mathématique",
+        "On additionne 4 et 2 en premier",
+        "On multiplie 2 par 3 en premier"
+      ],
+      "correctAnswer": "On additionne 4 et 2 en premier",
+      "explanation": "Les parenthèses indiquent d'additionner 4 et 2 en premier dans cette expression.",
+      "chapter": "C5",
+      "difficulty": "Moyen",
+      "matiere": "Mathématiques"
     },
     {
-        "question": "Un terrain carré a une aire de 225 m². Quelle est la longueur de chaque côté du terrain, et comment peut-on exprimer cette aire en ares et centiares ?",
-        "answers": ["1", "2"],
-        "correctAnswer": "1",
-        "explanation": "1" 
+      "question": "Quelle est la valeur de l'expression (6 - 2) x (4 + 3) ?",
+      "answers": ["14", "35", "20", "28"],
+      "correctAnswer": "28",
+      "explanation": "En suivant l'ordre des parenthèses, on soustrait d'abord (6 - 2) puis on additionne (4 + 3), et enfin on multiplie les résultats.",
+      "chapter": "C5",
+      "difficulty": "Moyen",
+      "matiere": "Mathématiques"
     },
     {
-        "question": "Pour mesurer l'aire d'une forme complexe, comme un parc de jeux pour enfants, quelles méthodes pourrais-tu utiliser pour découper cette forme en sections plus simples et additionner les aires individuelles ?",
-        "answers": ["1", "2"],
-        "correctAnswer": "1",
-        "explanation": "1" 
+      "question": "Que se passe-t-il si on enlève les parenthèses dans l'expression 2 x (7 + 1) ?",
+      "answers": [
+        "Le résultat ne change pas",
+        "On obtient une erreur mathématique",
+        "On multiplie 2 par 7 en premier",
+        "On additionne 2 et 7 en premier"
+      ],
+      "correctAnswer": "On obtient une erreur mathématique",
+      "explanation": "En enlevant les parenthèses, l'ordre des opérations est modifié, et cela provoque une erreur mathématique.",
+      "chapter": "C5",
+      "difficulty": "Moyen",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Que signifie l'expression 3 x (2 + 4) - 5 ?",
+      "answers": [
+        "Multiplie 3 par la somme de 2 et 4, puis soustrais 5",
+        "Multiplie 3 par 2, multiplie 3 par 4, puis soustrais 5",
+        "Additionne 3 et 2, additionne 3 et 4, puis soustrais 5",
+        "Multiplie 3 par 2, additionne 3 et 4, puis soustrais 5"
+      ],
+      "correctAnswer": "Multiplie 3 par la somme de 2 et 4, puis soustrais 5",
+      "explanation": "Les parenthèses indiquent de faire d'abord la somme de 2 et 4, puis de multiplier le résultat par 3, et enfin de soustraire 5.",
+      "chapter": "C5",
+      "difficulty": "Moyen",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Que",
+      "answers": [
+        "Il est important de respecter l'ordre des opérations lorsqu'on utilise des parenthèses dans une expression mathématique.",
+        "Les parenthèses n'ont aucun effet sur le résultat final d'une expression mathématique.",
+        "Les parenthèses sont utilisées uniquement pour rendre une expression mathématique plus lisible.",
+        "Les parenthèses sont toujours placées autour du nombre le plus petit dans une expression mathématique."
+      ],
+      "correctAnswer": "Il est important de respecter l'ordre des opérations lorsqu'on utilise des parenthèses dans une expression mathématique.",
+      "explanation": "Les parenthèses affectent l'ordre des opérations, indiquant quelles opérations effectuer en premier.",
+      "chapter": "C5",
+      "difficulty": "Difficile",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Si on a l'expression 2 x (3 + 5) - 4, que fait-on en premier ?",
+      "answers": [
+        "On multiplie 2 par 3",
+        "On additionne 3 et 5",
+        "On soustrait 4",
+        "On multiplie 8 par 2"
+      ],
+      "correctAnswer": "On additionne 3 et 5",
+      "explanation": "Les parenthèses indiquent d'additionner 3 et 5 en premier dans cette expression.",
+      "chapter": "C5",
+      "difficulty": "Difficile",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Que se passe-t-il si on met des parenthèses autour de chaque nombre dans l'expression 4 x 7 - 3 ?",
+      "answers": [
+        "Le résultat ne change pas",
+        "On obtient une erreur mathématique",
+        "On additionne 4 et 7 en premier",
+        "On multiplie 4 par 7 en premier"
+      ],
+      "correctAnswer": "Le résultat ne change pas",
+      "explanation": "Les parenthèses n'ont aucun effet sur cette expression, car l'ordre des opérations reste le même.",
+      "chapter": "C5",
+      "difficulty": "Difficile",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Dans l'expression 10 - (3 + 2) x 4, que fait-on en premier ?",
+      "answers": [
+        "On soustrait 10 de 3",
+        "On additionne 3 et 2",
+        "On multiplie 2 par 4",
+        "On soustrait 5 de 10"
+      ],
+      "correctAnswer": "On additionne 3 et 2",
+      "explanation": "Les parenthèses indiquent d'additionner 3 et 2 en premier dans cette expression.",
+      "chapter": "C5",
+      "difficulty": "Difficile",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Que signifie l'expression (6 x 2) + (4 - 3) ?",
+      "answers": [
+        "Multiplie 6 par 2, puis ajoute 4 et soustrais 3",
+        "Multiplie 6 par 2 et 4, puis soustrais 3",
+        "Additionne 6 et 2, puis multiplie le résultat par 4 et soustrais 3",
+        "Multiplie 6 par 2, puis additionne 4 et 3"
+      ],
+      "correctAnswer": "Multiplie 6 par 2, puis ajoute 4 et soustrais 3",
+      "explanation": "Les parenthèses indiquent de multiplier 6 par 2 en premier, puis d'ajouter 4 et de soustraire 3.",
+      "chapter": "C5",
+      "difficulty": "Difficile",
+      "matiere": "Mathématiques"
     }
-   
-    
   ]
+  

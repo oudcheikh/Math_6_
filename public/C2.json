@@ -1,59 +1,101 @@
- [
+[
     {
-        "question": "Pourquoi l'aire d'un rectangle de 4 cm de long et 2 cm de large est-elle de 8 cm², et comment peut-on vérifier cette mesure en comptant les carrés à l'intérieur ?",
-        "answers": ["1", "2", "3", "4"],
-        "correctAnswer": "1",
-        "chapter":"Numération2",
-    "chapter_root": "/C2",
-    "difficulty": "Facile",
-    "qcm_id":1
-      },
- 
-    {
-        "question": "Une piscine rectangulaire mesure 5 mètres de long sur 3 mètres de large. Quelle est l'aire de la surface de l'eau en m², et comment peut-on exprimer cette aire en ares ?",
-        "answers": ["1", "2"],
-        "correctAnswer": "1",
-        "chapter":"Numération2",
-    "chapter_root": "/C2",
-    "difficulty": "Facile",
-    "qcm_id":2
-    },
-    {
-        "question": "Si un triangle a une base de 10 cm et une hauteur de 8 cm, comment calcule-t-on son aire en cm², et pourquoi divise-t-on le produit de la base et de la hauteur par 2 ?",
-        "answers": ["1", "2"],
-        "correctAnswer": "1",
-        "chapter":"Numération2",
-        "chapter_root": "/C2",
+        "question": "Quel nombre est plus grand : 5684 ou 4976 ?",
+        "answers": ["5684", "4976"],
+        "correctAnswer": "5684",
+        "explanation": "5684 est plus grand que 4976 car le chiffre le plus à gauche est plus grand.",
+        "chapter": "C2",
         "difficulty": "Facile",
-        "qcm_id":3
+        "matiere": "Mathématiques"
     },
+
     {
-        "question": "Un cercle a un rayon de 6 cm. Comment calcule-t-on son aire en cm², et pourquoi doit-on utiliser la formule πr² pour cette mesure ?",
-        "answers": ["1", "2"],
-        "correctAnswer": "1",
-        "chapter":"Numération2",
-        "chapter_root": "/C2",
+        "question": "Si tu compares 8523 et 8235, quel nombre est plus grand ?",
+        "answers": ["8523", "8235"],
+        "correctAnswer": "8523",
+        "explanation": "8523 est plus grand que 8235 car le chiffre le plus à gauche est plus grand.",
+        "chapter": "C2",
         "difficulty": "Facile",
-        "qcm_id":4
+        "matiere": "Mathématiques"
     },
+
     {
-        "question": "Un terrain carré a une aire de 225 m². Quelle est la longueur de chaque côté du terrain, et comment peut-on exprimer cette aire en ares et centiares ?",
-        "answers": ["1", "2"],
-        "correctAnswer": "1",
-        "chapter":"Numération2",
-        "chapter_root": "/C2",
+        "question": "Quel est le plus petit nombre parmi : 9765, 8934, 9821, 8456 ?",
+        "answers": ["9765", "8934", "9821", "8456"],
+        "correctAnswer": "8456",
+        "explanation": "8456 est le plus petit nombre car il a le chiffre le plus petit à la place des milliers.",
+        "chapter": "C2",
         "difficulty": "Facile",
-        "qcm_id":5
+        "matiere": "Mathématiques"
     },
+
     {
-        "question": "Pour mesurer l'aire d'une forme complexe, comme un parc de jeux pour enfants, quelles méthodes pourrais-tu utiliser pour découper cette forme en sections plus simples et additionner les aires individuelles ?",
-        "answers": ["1", "2"],
-        "correctAnswer": "1",
-        "chapter":"Numération2",
-        "chapter_root": "/C2",
+        "question": "Si tu as 6279 billes et ton ami en a 7385, qui a le plus grand nombre de billes ?",
+        "answers": ["6279", "7385"],
+        "correctAnswer": "7385",
+        "explanation": "7385 est plus grand que 6279 car le chiffre le plus à gauche est plus grand.",
+        "chapter": "C2",
         "difficulty": "Facile",
-        "qcm_id":6        
+        "matiere": "Mathématiques"
+    },
+
+    {
+        "question": "Parmi ces nombres, lequel est plus grand : 12678, 11987, 12345, 13256 ?",
+        "answers": ["12678", "11987", "12345", "13256"],
+        "correctAnswer": "13256",
+        "explanation": "13256 est le plus grand nombre car il a le chiffre le plus grand à la place des dizaines de mille.",
+        "chapter": "C2",
+        "difficulty": "Moyen",
+        "matiere": "Mathématiques"
+    },
+
+    {
+        "question": "Quel est le plus petit nombre parmi : 15789, 14563, 15987, 14876 ?",
+        "answers": ["15789", "14563", "15987", "14876"],
+        "correctAnswer": "14563",
+        "explanation": "14563 est le plus petit nombre car il a le chiffre le plus petit à la place des milliers.",
+        "chapter": "C2",
+        "difficulty": "Moyen",
+        "matiere": "Mathématiques"
+    },
+
+    {
+        "question": "Si tu compares 18924 et 18492, quel nombre est plus grand ?",
+        "answers": ["18924", "18492"],
+        "correctAnswer": "18924",
+        "explanation": "18924 est plus grand que 18492 car le chiffre le plus à gauche est plus grand.",
+        "chapter": "C2",
+        "difficulty": "Moyen",
+        "matiere": "Mathématiques"
+    },
+
+    {
+        "question": "Quel nombre est plus grand : 25678 ou 25987 ?",
+        "answers": ["25678", "25987"],
+        "correctAnswer": "25987",
+        "explanation": "25987 est plus grand que 25678 car le chiffre le plus à gauche est plus grand.",
+        "chapter": "C2",
+        "difficulty": "Moyen",
+        "matiere": "Mathématiques"
+    },
+
+    {
+        "question": "Parmi ces nombres, lequel est plus petit : 30456, 31789, 29543, 32098 ?",
+        "answers": ["30456", "31789", "29543", "32098"],
+        "correctAnswer": "29543",
+        "explanation": "29543 est le plus petit nombre car il a le chiffre le plus petit à la place des dizaines de mille.",
+        "chapter": "C2",
+        "difficulty": "Difficile",
+        "matiere": "Mathématiques"
+    },
+
+    {
+        "question": "Si tu as 42567 billes et ton ami en a 41678, qui a le plus grand nombre de billes ?",
+        "answers": ["42567", "41678"],
+        "correctAnswer": "42567",
+        "explanation": "42567 est plus grand que 41678 car le chiffre le plus à gauche est plus grand.",
+        "chapter": "C2",
+        "difficulty": "Difficile",
+        "matiere": "Mathématiques"
     }
-   
-    
-  ]
+]

@@ -1,26 +1,127 @@
 [
-  {
-      "question": "Quel est le résultat de (12 345 multiplié par 678) ajouté à 456 789?",
-      "answers": ["8 819 499", "8 819 590", "8 818 500", "8 820 000"],
-      "correctAnswer": "8 819 499",
-      "explanation": "12 345 x 678 = 8 362 710 et 8 362 710 + 456 789 = 8 819 499."
-  },
-  {
-      "question": "Quel est le résultat de (9 876 multiplié par 543) ajouté à 789 123?",
-      "answers": ["6 151 711", "6 142 711", "6 141 701", "6 151 700"],
-      "correctAnswer": "6 151 711",
-      "explanation": "9 876 x 543 = 5 362 588 et 5 362 588 + 789 123 = 6 151 711."
-  },
-  {
-      "question": "Quel est le produit de (25 467 multiplié par 1 234) ajouté à 987 654?",
-      "answers": ["32 395 232", "32 396 232", "32 394 232", "32 395 223"],
-      "correctAnswer": "32 395 232",
-      "explanation": "25 467 x 1 234 = 31 407 578 et 31 407 578 + 987 654 = 32 395 232."
-  },
-  {
-      "question": "Quel est le résultat de (65 432 multiplié par 321) ajouté à 1 234 567?",
-      "answers": ["22 264 779", "21 264 789", "22 263 779", "21 263 789"],
-      "correctAnswer": "22 264 779",
-      "explanation": "65 432 x 321 = 21 030 212 et 21 030 212 + 1 234 567 = 22 264 779."
-  }
-]
+    {
+      "question": "Qu'est-ce que l'addition des grands nombres ?",
+      "answers": [
+        "Combinaison de plusieurs chiffres",
+        "Combinaison de petits nombres",
+        "Combinaison de lettres",
+        "Combinaison de couleurs"
+      ],
+      "correctAnswer": "Combinaison de plusieurs chiffres",
+      "explanation": "L'addition des grands nombres consiste à combiner plusieurs chiffres pour obtenir un total.",
+      "chapter": "C7",
+      "difficulty": "Facile",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Si tu as 457 pommes et que tu en ajoutes 239, combien de pommes as-tu au total ?",
+      "answers": ["586", "676", "696", "706"],
+      "correctAnswer": "696",
+      "explanation": "Tu peux trouver le total de pommes en ajoutant les deux nombres : 457 + 239 = 696.",
+      "chapter": "C7",
+      "difficulty": "Facile",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Quelle est la règle de retenue en addition des grands nombres ?",
+      "answers": [
+        "Ignorer les chiffres",
+        "Écrire le premier nombre deux fois",
+        "Écrire le premier nombre et retenir le 1",
+        "Multiplier les chiffres"
+      ],
+      "correctAnswer": "Écrire le premier nombre et retenir le 1",
+      "explanation": "En additionnant des nombres et en obtenant un résultat supérieur ou égal à 10, on écrit le premier nombre et on retient le 1.",
+      "chapter": "C7",
+      "difficulty": "Facile",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Si tu ajoutes 5678 et 4321, quel est le résultat ?",
+      "answers": ["10001", "9999", "9876", "11111"],
+      "correctAnswer": "10001",
+      "explanation": "En additionnant 5678 et 4321, on obtient 10001.",
+      "chapter": "C7",
+      "difficulty": "Moyen",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Que se passe-t-il si tu oublies de faire la règle de retenue en addition ?",
+      "answers": [
+        "Le résultat est incorrect",
+        "Le résultat est plus petit",
+        "Le résultat est plus grand",
+        "Le résultat est le même"
+      ],
+      "correctAnswer": "Le résultat est incorrect",
+      "explanation": "Oublier la règle de retenue peut conduire à un résultat incorrect en addition des grands nombres.",
+      "chapter": "C7",
+      "difficulty": "Moyen",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Si tu as 8965 et que tu ajoutes 5432, quelle est la valeur du chiffre dans la colonne des unités du résultat ?",
+      "answers": ["1", "2", "3", "4"],
+      "correctAnswer": "7",
+      "explanation": "En additionnant 8965 et 5432, le chiffre dans la colonne des unités est 7.",
+      "chapter": "C7",
+      "difficulty": "Moyen",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Combien font 7896 + 1234 en utilisant la règle de retenue ?",
+      "answers": ["9120", "9020", "9121", "9220"],
+      "correctAnswer": "9130",
+      "explanation": "En additionnant 7896 et 1234 avec la règle de retenue, on obtient 9130.",
+      "chapter": "C7",
+      "difficulty": "Moyen",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Quelle est la somme de 987654321 et 123456789 ?",
+      "answers": ["110101110", "111111111", "121212121", "112233445"],
+      "correctAnswer": "111111110",
+      "explanation": "En additionnant 987654321 et 123456789, on obtient 111111110.",
+      "chapter": "C7",
+      "difficulty": "Difficile",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Si tu as 999999999 et que tu ajoutes 1, quel est le résultat ?",
+      "answers": ["999999998", "1000000000", "1000000001", "9999999999"],
+      "correctAnswer": "1000000000",
+      "explanation": "En ajoutant 1 à 999999999, on obtient 1000000000.",
+      "chapter": "C7",
+      "difficulty": "Difficile",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Quel est le résultat de l'addition : 876543210 + 987654321 + 123456789 ?",
+      "answers": [
+        "1987654321",
+        "1987654320",
+        "2109876543",
+        "2222222222"
+      ],
+      "correctAnswer": "1987654320",
+      "explanation": "En additionnant ces grands nombres, on obtient 1987654320.",
+      "chapter": "C7",
+      "difficulty": "Difficile",
+      "matiere": "Mathématiques"
+    },
+    {
+      "question": "Que se passe-t-il si tu ajoutes un nombre positif et un nombre négatif ?",
+      "answers": [
+        "Le résultat est toujours positif",
+        "Le résultat est toujours négatif",
+        "Le résultat dépend des nombres spécifiques",
+        "L'addition de nombres positifs et négatifs n'est pas possible"
+      ],
+      "correctAnswer": "Le résultat dépend des nombres spécifiques",
+      "explanation": "L'addition d'un nombre positif et d'un nombre négatif dépend des valeurs spécifiques de ces nombres.",
+      "chapter": "C7",
+      "difficulty": "Difficile",
+      "matiere": "Mathématiques"
+    }
+  ]
+  

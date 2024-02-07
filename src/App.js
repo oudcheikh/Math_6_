@@ -24,6 +24,7 @@ import C3 from './composents/C3/C3';
 import C4 from './composents/C4/C4';
 import C5 from './composents/C5/C5';
 import G2 from './composents/G2/G2';
+import Arabic from './composents/arab/Arabe'
 import C5A3 from './composents/C6/C5A3';
 import C5A4 from './composents/C6/C5A4';
 import Kangaroo from './composents/C6/Kangaroo';
@@ -207,6 +208,7 @@ function App() {
           <Route path="/Vaccination" element ={<Vaccination/>}/>
           <Route path="/Sida" element ={<Sida/>}/>
          
+         <Route path="/arabic" element={<Arabic/>}/>
           <Route path="/Islamique" element ={<Islamique/>}/>
           <Route path="/Science" element ={<Science/>}/>
           <Route path="/Histoire" element ={<Histoire/>}/>
