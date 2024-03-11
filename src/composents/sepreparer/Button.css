@@ -1,0 +1,30 @@
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Prend la hauteur totale de l'écran */
+    width: 100vw; /* Prend la largeur totale de l'écran */
+  }
+  
+  .download-button {
+    background-color: #5E2ECC;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+    text-transform: uppercase;
+    transition: background-color 0.3s; /* Ajoute une transition pour le survol et le clic */
+  }
+  
+  .download-button:hover {
+    background-color: #311adc;
+  }
+  
+  .download-button:active {
+    background-color: #4C28B7;
+  }
+  

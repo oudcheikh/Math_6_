@@ -1,6 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { myapp, dbf, auth} from './firebase'; // Importez directement app et dbf depuis le fichier firebase
-
+import { AuthProvider, useAuth } from './AuthContext';
+import SignUp from './SignUp';
+import SignIn from './SignIn';
+import HomePage from './HomePage'; // Composant pour la page d'accueil
+import Frensh from './composents/MyFrançais'
+import QuizTest from './composents/home/QuizTest';
+import QuizTestarab from './composents/home/QuizTestarab';
+import QuizTestHistoire from './composents/home/QuizTesthistoire';
+import QuizTestIslamic from './composents/home/QuizTestIslamic';
+import QuizTestFrançais from './composents/home/QuizTestFrançais';
+import QuizTestMath from './composents/home/QuizTestMath';
+import QuizTestScience from './composents/home/QuizTestScience'
+import PrepaArabe from './composents/sepreparer/arab/PrepaArabe';
+import PrepaFrançais from './composents/sepreparer/français/PrepaFrançais';
+import Vocabulaire from './composents/Français/Vocabulaire/Vocabulaire';
+import Acueilvocabulaire from './composents/Français/Vocabulaire/Acueilvocabulaire';
+import Vocabulaireecoleville from'./composents/Français/Vocabulaire/Vocabulaire.png/EcoleVille.png/Vocabulaireecoleville';
+import PrepaConcoursArabe from './composents/sepreparer/Prepaconcoursarabe'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Accueil from './composents/Accueil';
 import TopBarWithDrawer from './TopBarWithDrawer';
@@ -8,7 +25,6 @@ import { useLanguage } from './LanguageProvider';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@mui/material";
 import Drawer from '@mui/material/Drawer';
-import QuizTest from './composents/home/QuizTest';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -84,6 +100,63 @@ import Pollution from './composents/Science/Chapitre4/Pollution';
 import EauEtSante from './composents/Science/Chapitre5/EauEtSante';
 import Vaccination from './composents/Science/Chapitre6/Vaccination';
 import Sida from './composents/Science/Chapitre7/Sida';
+import Periode3 from './composents/periode3';
+import Etre from './composents/Conjugaison/etre/etre';
+import Grammaire from './composents/Grammaire/grammaire';
+import Sujet from './composents/Grammaire/Sujet/Sujet';
+import TypesDesPhrases from './composents/Grammaire/Types des phrases/lesphrases'
+import PhraseDeclarative from './composents/Grammaire/Types des phrases/Prase Declarative/PhraseDeclarative'
+import PhraseImperative from './composents/Grammaire/Types des phrases/phrase impérative/phraseImperative'
+import Exclamative from './composents/Grammaire/Types des phrases/phrase exclamative/exclamative'
+import Interrogative from './composents/Grammaire/Types des phrases/La phrase interrogative/interrogative'
+import Verbe from './composents/Grammaire/le verbe/verbe'
+import Complement from './composents/Grammaire/Complement/Complement'
+import COD from './composents/Grammaire/Complement/COD'
+import COI from './composents/Grammaire/Complement/COI/COID'
+import CC from './composents/Grammaire/Complement/Circonstanciel/CC'
+import Adjectif from './composents/Grammaire/adjectif/adjectif'
+import Adverbe from './composents/Grammaire/Adverbe/Adverbe'
+import Conjonction from './composents/Grammaire/Conjonction/Conjonction'
+import Subordination from './composents/Grammaire/Conjonction/Conj Subordination/Subordination'
+
+import Coordination from './composents/Grammaire/Conjonction/Coordination/Coordination'
+import Préposition from './composents/Grammaire/la Préposition/Préposition'
+import Article from './composents/Grammaire/Article/Article'
+import Article1 from './composents/Grammaire/Article/Article1'
+import Définis from './composents/Grammaire/Article/Définis'
+import Indéfinis from './composents/Grammaire/Article/Indéfinis'
+import Partitif from './composents/Grammaire/Article/partitif'
+
+
+import VocabularyTrainerBah from './composents/Grammaire/Sujet/Exercices'
+import ExSuj from './composents/Grammaire/Sujet/ExerciceSujet'
+import PrepEx from './composents/Grammaire/la Préposition/quiz/PreposionExercices'
+
+import ExercicePréposition from './composents/Grammaire/la Préposition/quiz/Exercices'
+import ConjonctionEx from './composents/Grammaire/Conjonction/quiz/ConjonctionExercices'
+
+import ComplementEx from './composents/Grammaire/Complement/quiz/ComplementExercices'
+import ArticleEx from './composents/Grammaire/Article/quiz/ArticleExercices'
+import AdverbeExercice from './composents/Grammaire/Adverbe/quiz/AdverbeExercices'
+import AdjectiveExercice from './composents/Grammaire/adjectif/quiz/AdjectiveExercices'
+import TypePhExercices from './composents/Grammaire/Types des phrases/quiz/TypePhExercices'
+//Orthographe  
+import Orthographe from './composents/Français/Orthographe/Orthographe'
+import ExamenQCM from './composents/home/QuizTest'
+
+import ExamenOrthographe from './composents/Français/Orthographe/ExamenOrthographe'
+import Quiz from './composents/Français/Orthographe/ExercicesOrth'
+import RangeExample from './composents/Français/Orthographe/boot'
+
+import Concours from './composents/Concours/Concours'
+import ConcoursFrançais from './composents/Concours/concours 2005/Français/ConcFrançais'
+import Orth2005 from './composents/Concours/concours 2005/Français/Orthographe/Orth2005'
+import ConcoursFrançais2005 from './composents/Concours/concours 2005/Français/ConcFrançais'
+import Accueilarab from './composents/Accueilarab' 
+import Acceuilfrançais from './composents/Acceuilfrançais' 
+import ProtectedRoute from './ProtectedRoute.js'; // Assurez-vous d'importer votre nouveau composant
+
+
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -97,7 +170,15 @@ import ScoreBoard from "./composents/scoreBoard"
 
 
 
+// Composant pour gérer la redirection basée sur l'état d'authentification
+const AuthenticatedRoute = ({ children }) => {
+  const { currentUser } = useAuth();
+  return currentUser ? <Navigate to="/mycount" /> : children;
+};
+
+
 function App() {
+
 
   const [value, setValue] = useState(0);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -109,17 +190,11 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        setUser(authUser);
-      } else {
-        setUser(null);
-      }
-    });
-
-    return () => {
-      unsubscribe();
-    };
+    // Simule la récupération d'un utilisateur depuis le local storage
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
   }, []);
 
    // Configurer la persistance de l'authentification au niveau local
@@ -128,7 +203,12 @@ function App() {
   //   auth.setPersistence(persistence);
   // }, []);
 
- 
+  const handleSignUp = () => {
+    const newUser = { name: 'Utilisateur Exemple' };
+    setUser(newUser);
+    localStorage.setItem('user', JSON.stringify(newUser));
+    // Ajoutez ici la logique d'inscription (ex: mise à jour de la base de données)
+  };
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -151,20 +231,47 @@ function App() {
       />
 
         <div style={{ marginTop: 64 }}>
+
+  
             <Routes>
-          <Route path="/math-chapters" element={<MathChapters />} />
+            <Route path="/" element={<HomePage />} />
+          <Route path="/Math" element={<MathChapters />} />
           <Route path= "/QuizTest" element={<QuizTest/>} />
+
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
           
-          <Route
+        {/* <Route
           path="/"
           element={user ? <Revisions /> : <Navigate to="/mycount" />}
-        />
+        /> */}
+
+          <Route path="/myrevison" element={<ProtectedRoute component={Revisions} />} />
+
+
+          <Route path= "/Accueilarab" element={<Accueilarab/>} />
+          <Route path= "/Acceuilfrançais" element={<Acceuilfrançais/>} />
+          <Route path= "/PrepaArabe" element={<PrepaArabe/>} />
+          <Route path= "/PrepaFrançais" element={<PrepaFrançais/>} />
+          <Route path= "/QuizTest" element={<QuizTest/>} />
+          <Route path= "/QuizTestarab" element={<QuizTestarab/>} /> // QuizTestHistoire
+          <Route path= "/QuizTestHistoire" element={<QuizTestHistoire/>} />
+          <Route path= "/QuizTestIslamic" element={<QuizTestIslamic/>} />
+
+          <Route path= "/QuizTestFrançais" element={<QuizTestFrançais/>} /> // QuizTestFrançais
+          <Route path= "/QuizTestMath" element={<QuizTestMath/>} /> // QuizTestFrançais
+          <Route path= "/QuizTestScience" element={<QuizTestScience/>} /> // QuizTestFrançais
+
+
+
           
           <Route path="/mycount" element ={<InscriptionPage/>}/> // InscriptionPage
-          <Route path="/scoreboard" 
-          element ={user ? <ScoreBoard/> : <Navigate to="/mycount" />}
-          />
+          
+          <Route path="/scoreboard" element={<ProtectedRoute component={ScoreBoard} />} />
 
+          {/* <Route path="/scoreboard" element ={user ? <ScoreBoard/> : <Navigate to="/" />}/> */}
+
+          <Route path="/prepaconcoursarabe" element={<PrepaConcoursArabe/>}/>
           <Route path="/Periode1" element ={<Periode1/>}/>
           <Route path="/Periode2" element ={<Periode2/>}/>
           <Route path="/C1" element ={<C1/>}/>
@@ -233,11 +340,70 @@ function App() {
           <Route path="/Islamique1" element ={<Islamique1/>}/>
           <Route path="/Islamique2" element ={<Islamique2/>}/>
           <Route path="/Islamique3" element ={<Islamique3/>}/>
-          <Route path="/Islamique4" element ={<Islamique4/>}/>   
+          <Route path="/Islamique4" element ={<Islamique4/>}/>
+
+           {/*________________________Conjugaison____________________*/}
+          <Route path="/Français" element ={<Frensh/>}/>   
+          <Route path="/periode3" element ={<Periode3 />}/>
+          <Route path="/Etre" element ={<Etre />}/>
+        {/*________________________Grammaire____________________*/}
+        <Route path="/Grammaire" element ={<Grammaire />}/>
+        <Route path="/Sujet" element ={<Sujet />}/>
+        <Route path="/TypesDesPhrases" element ={<TypesDesPhrases />}/>
+        <Route path="/PhraseDeclarative" element ={<PhraseDeclarative />}/>
+        <Route path="/PhraseImperative" element ={<PhraseImperative />}/>
+        <Route path="/Exclamative" element ={<Exclamative />}/>
+        <Route path="/Interrogative" element ={<Interrogative />}/>
+        <Route path="/Verbe" element ={<Verbe />}/>
+        <Route path="/Complement" element ={<Complement />}/>
+        <Route path="/COD" element ={<COD />}/>
+        <Route path="/COI" element ={<COI />}/>
+        <Route path="/CC" element ={<CC />}/>
+        <Route path="/Conjonction" element ={<Conjonction />}/>
+        <Route path="/Subordination" element ={<Subordination />}/>
+        <Route path="/Coordination" element ={<Coordination />}/>
+        <Route path="/Préposition" element ={<Préposition />}/>
+        <Route path="/Article" element ={<Article/>}/>
+        <Route path="/Article1" element ={<Article1/>}/>
+        <Route path="/Définis" element ={<Définis/>}/>
+        <Route path="/Indéfinis" element ={<Indéfinis/>}/>
+        <Route path="/Partitif" element ={<Partitif/>}/>
+         {/*________________________Exercices Grammaire____________________*/}
+      
+          <Route path="/VocabularyTrainerBah" element ={<VocabularyTrainerBah/>}/> 
+           
+           <Route path="/ExSuj" element ={<ExSuj/>}/>
+           <Route path="/PrepEx" element ={<PrepEx/>}/>
+           <Route path="/ExercicePréposition" element ={<ExercicePréposition/>}/>
+           <Route path="/ConjonctionEx" element ={<ConjonctionEx/>}/>
+           <Route path="/ComplementEx" element ={<ComplementEx/>}/>
+           <Route path= "/ArticleEx" element={<ArticleEx/>} />
+           <Route path= "/AdverbeExercice" element={<AdverbeExercice/>} />
+           <Route path= "/AdjectiveExercice" element={<AdjectiveExercice/>} />
+           <Route path= "/TypePhExercices" element={<TypePhExercices/>} />
+ {/*________________________Orthographe____________________*/}
+            <Route path= "/Orthographe" element={<Orthographe/>} />   
+            <Route path= "/ExamenQCM" element={<ExamenQCM/>} />
+            <Route path= "/ExamenOrthographe" element={<ExamenOrthographe/>} />
+            <Route path= "/Quiz" element={<Quiz/>} />
+        <Route path="/Adjectif" element ={<Adjectif />}/>
+        <Route path="/Adverbe" element ={<Adverbe />}/>
+          <Route path= "/Vocabulaire" element={<Vocabulaire/>} />
+          <Route path= "/Acueilvocabulaire" element={<Acueilvocabulaire/>} />
+          <Route path= "/Vocabulaireecoleville" element={<Vocabulaireecoleville/>} />
+          <Route path= "/RangeExample" element={<RangeExample/>} />
+
+          {/*----------------------------Concours ------------------------*/}
+          <Route path= "/Concours" element={<Concours/>} />
+          {/*----------------------------Concours 2005 ------------------------*/}
+          <Route path= "/ConcoursFrançais" element={<ConcoursFrançais/>} />
+          <Route path= "/Orth2005" element={<Orth2005/>} />
+          <Route path= "/ConcoursFrançais2005" element={<ConcoursFrançais2005/>} /> 
 
 
           {/* Ajoutez des composants pour les autres onglets ici en utilisant <Route> */}
         </Routes>
+     
         </div>
       </div>
    

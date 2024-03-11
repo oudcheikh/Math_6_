@@ -1,62 +1,85 @@
 import React, { useState, useEffect } from 'react';
-import db from './db';
-import ChapterCard from './ChapterCard';
 import { useNavigate } from 'react-router-dom';
-import { CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+import ChapterCard from './ChapterCard';
 
-function ScoreBoard() {
-
-  const [chapterScores, setChapterScores] = useState({});
+const ThemeComponent = () => {
+  const [themeScores, setThemeScores] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const loadScores = async () => {
-      const allResponses = await db.responses.toArray();
+    const fetchScores = async () => {
+      try {
+        const scoresString = localStorage.getItem('scores');
+        const scoresArray = JSON.parse(scoresString);
 
-      const scores = allResponses.reduce((acc, response) => {
-        const { chapter, chapter_root, isCorrect } = response;
+        console.log("_____________scoresArray____________  : ", scoresArray)
 
-        if (!acc[chapter]) {
-          acc[chapter] = { total: 0, correct: 0, chapter_root: chapter_root };
+        if (!scoresArray) {
+          console.error('No scores found');
+        } else {
+          const scoresList = scoresArray.map(item => ({
+            matiere: item.matiere,
+            score: item.score
+          }));
+        
+          console.log("_____________scoresList____________  : ", scoresList)
+
+          const totalScores = scoresList.reduce((acc, item) => {
+            if (item.matiere && typeof item.score === 'number') {
+              acc[item.matiere] = acc[item.matiere] || 0;
+              acc[item.matiere] += item.score;
+            }
+            return acc;
+        }, {});
+        
+        console.log(totalScores);
+
+          // Transformation des scores en un format compatible avec le composant
+          const transformedScoresList = Object.keys(totalScores).map((matiere) => ({
+            name: matiere,
+            score: totalScores[matiere],
+            questions: 10,
+          }));
+          
+          setThemeScores(transformedScoresList);
         }
-        acc[chapter].total++;
-        if (isCorrect) {
-          acc[chapter].correct++;
-        }
-        return acc;
-      }, {});
-
-      Object.keys(scores).forEach(chapter => {
-        const score = scores[chapter];
-        score.percentage = (score.correct / score.total) * 100;
-        score.evaluation = score.percentage >= 80 ? 'Bon' : 'À améliorer';
-      });
-
-      setChapterScores(scores);
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
     };
 
-    loadScores();
+    fetchScores();
   }, []);
+
+  const handleNavigation = (matiere) => {
+    const matiereToRoute = {
+      histoire: "/QuizTestHistoire",
+      educationislamique: "/QuizTestIslamic",
+      sciencenaturelle: "/QuizTestScience",
+      Arabe: "/QuizTestarab",
+      Mathématiques: "/QuizTestMath"
+    };
+
+    const route = matiereToRoute[matiere];
+    if (route) {
+      navigate(route);
+    }
+  };
 
   return (
     <div>
-    <h1>Tableau des scores par chapitre</h1>
-    {Object.entries(chapterScores).map(([chapter, scoreData]) => (
-      <ChapterCard
-        key={chapter}
-        chapter={`Chapitre: ${chapter}`}
-        title={
-          <div>
-              <p>{`Score: ${scoreData.correct}/${scoreData.total} (${scoreData.percentage.toFixed(2)}%) - ${scoreData.evaluation}`}</p>
-           
-          </div>
-        }
-        onClick={() => navigate(scoreData.chapter_root)}
-      />
-    ))}
-  </div>
+      <h2>Choisissez un thème</h2>
+      <p>Lancez une série thématique pour améliorer votre niveau sur les thèmes officiels de l'examen.</p>
+      {themeScores.map((theme, index) => (
+        <ChapterCard
+          key={index}
+          chapter={theme.name}
+          title={`Score: ${Math.ceil(theme.score)}`}
+          onClick={() => handleNavigation(theme.name)}
+        />
+      ))}
+    </div>
   );
-}
+};
 
-export default ScoreBoard;
+export default ThemeComponent;

@@ -16,8 +16,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
 
-
-function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, navigate }) {
+function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, navigate, score }) {
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -26,7 +25,7 @@ function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, naviga
   };
 
   const goToHomePage = () => {
-    navigate('/');
+    navigate('/myrevison');
     setDrawerOpen(false); // Ferme le tiroir lors de la navigation
   };
 
@@ -60,9 +59,11 @@ function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, naviga
             <MenuIcon />
           </IconButton>
           
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Major - Tailim
+          
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} onClick={goToScoreboard} style={{ cursor: 'pointer' }}>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{4566} 🥇
           </Typography>
+
           
           {/* Conteneur pour aligner le sélecteur de langue à droite */}
           <Box sx={{ flexGrow: 0 }}>
