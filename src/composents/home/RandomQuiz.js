@@ -9,6 +9,10 @@ import './Major.css'; // Adjust path as needed
 import ScoreComponent from '../Scorecomponent';
 
 const QCMComponent = ({ questions }) => {
+
+
+  console.log("---------------------------------   selected qcm : ", questions)
+  
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState('');
   const [userResponses, setUserResponses] = useState([]);
@@ -55,12 +59,15 @@ const QCMComponent = ({ questions }) => {
     setUserResponses((prevResponses) => [
       ...prevResponses,
       {
+        id: currentQuestion.id, // ID de la question
         question: currentQuestion.question,
         options: currentQuestion.answers,
         selectedOption: option,
         correctAnswer: currentQuestion.correctAnswer,
         isCorrect: isAnswerCorrect,
-        explanation: currentQuestion.explanation
+        explanation: currentQuestion.explanation,
+        matiere:currentQuestion.matiere 
+
       },
     ]);
 
@@ -168,7 +175,7 @@ const QCMComponent = ({ questions }) => {
       Résultats du Quiz 
     </FormulaText>
     <FormulaText variant="h6" style={{ textAlign: 'center', marginTop: '20px' }}>
-    <ScoreComponent score={finalScore*10} matiere={questions[0].matiere} />  
+    <ScoreComponent allResponses = {userResponses} score={finalScore*10} matiere={questions[0].matiere} />  
     </FormulaText>
     {userResponses.map((response, index) => (
       <Card key={index} className="question-card" style={{ marginBottom: '10px', padding: '10px' }}>

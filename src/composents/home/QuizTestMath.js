@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import QCMComponent from './RandomQuiz';
-import { searchByChapter } from '../../SyncFirebase'
+import { fetchResultsFromStore } from '../../SyncFirebase'
 
 
 function ExamenQCM() {
@@ -11,7 +11,7 @@ function ExamenQCM() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await searchByChapter(chapter,"prepa-français");
+        const data = await fetchResultsFromStore("prepa-français", "PRPAMA006", "PRPAMA006");
         setQcmList(data);
       } catch (error) {
         console.error('Erreur lors de la récupération des données :', error);
@@ -25,10 +25,17 @@ function ExamenQCM() {
       // Perform any cleanup if necessary
     };
   }, []); // Exécutez l'effet à chaque fois que le chapitre change
+  const minNbCorrectAnswer = Math.min(...qcmList.map(qcm => qcm.nbCorrectAnswer));
+  // Remarque: Vous pouvez ajuster le critère de tri selon vos besoins
+    const filteredAndSortedQCMs = qcmList
+    .filter(qcm => qcm.nbCorrectAnswer === minNbCorrectAnswer)
+    .sort((a, b) => a.nbCorrectAnswer - b.nbCorrectAnswer); // Ou tout autre critère de tri
+
+    console.log("filteredAndSortedQCMs : ", filteredAndSortedQCMs);
 
      return (
          <div>
-           <QCMComponent questions={qcmList.slice(0, 2)} />
+           <QCMComponent questions={filteredAndSortedQCMs.slice(0, 3)} />
          </div>
        );
      };

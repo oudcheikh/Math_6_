@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import anime from 'animejs';
 import { Card } from '@mui/material';
 import './Styles/Scorecomponent.css';
 import imgsucess from './succes.png';
 import imgechec from './echec.png';
-//import ScoreTracker from './score/TrackScore'
 
 const getRandomColor = () => {
   const letters = '0123456789ABCDEF';
@@ -15,17 +14,115 @@ const getRandomColor = () => {
   return color;
 };
 
-const ScoreComponent = ({ score, matiere}) => {
-  
-  console.log("---------------------  test component. score et matière ....",matiere, score)
-  //const scores = ScoreTracker(matiere, score)
-  ////////////////////////////////////////////////////////
-  const currentDate = new Date().toISOString();
-  // Mise à jour du localStorage
-  const localStorageScores = JSON.parse(localStorage.getItem('scores')) || [];
-  localStorageScores.push({ date: currentDate, matiere, score });
-  localStorage.setItem('scores', JSON.stringify(localStorageScores));
+const ScoreComponent = ({ allResponses, score, matiere }) => {
+  const [renderedOnce, setRenderedOnce] = useState(false);
+  const [scoreStored, setScoreStored] = useState(false);
+
   const isSuccess = score >= 50;
+
+  useEffect(() => {
+    if (!renderedOnce) {
+      let dbName = "prepa-français"; // Nom de la base de données
+      let storeName = allResponses[0].matiere; // Nom du store
+      let data = allResponses;
+
+      // Fonction pour ouvrir une connexion à une base de données IndexedDB spécifiée
+      const openDatabase = () => {
+        return new Promise((resolve, reject) => {
+          // Ouvrir une connexion à la base de données spécifiée
+          let request = indexedDB.open(dbName);
+
+          request.onsuccess = function (event) {
+            // Connexion réussie
+            resolve(event.target.result);
+          };
+
+          request.onerror = function (event) {
+            // Gérer l'erreur d'ouverture
+            reject('Database error: ' + event.target.errorCode);
+          };
+
+          // Créer le store "PRPAMA006" si nécessaire (lors de la première ouverture ou mise à jour de version)
+        });
+      };
+
+      const updateAnswers = (db, storeName, data) => {
+        let transaction = db.transaction(storeName, "readwrite");
+        let store = transaction.objectStore(storeName);
+        let index = store.index("idIndex"); // Utilise l'index pour le parcours
+
+        data.forEach(question => {
+          let id = question.id;
+
+          // Utilise openCursor sur l'index pour trouver les enregistrements par leur id
+          let request = index.openCursor(IDBKeyRange.only(id));
+
+          request.onsuccess = function (event) {
+            let cursor = event.target.result;
+
+            if (cursor) {
+              let dbQuestion = cursor.value; // L'enregistrement actuel pointé par le curseur
+              let primaryKey = cursor.primaryKey; // La clé primaire de l'enregistrement actuel
+              console.log(`Clé primaire de l'enregistrement: ${primaryKey}`);
+
+              // Met à jour l'enregistrement selon si la réponse est correcte ou non
+              if (question.isCorrect) {
+                dbQuestion.nbCorrectAnswer = (dbQuestion.nbCorrectAnswer || 0) + 1;
+              } else {
+                dbQuestion.nbFalseAnswer = (dbQuestion.nbFalseAnswer || 0) + 1;
+              }
+
+              // Met à jour l'enregistrement dans le store
+              cursor.update(dbQuestion);
+
+              cursor.continue(); // Passe au prochain enregistrement si nécessaire
+            } else {
+              console.log(`Aucun enregistrement supplémentaire trouvé avec l'id ${id}.`);
+            }
+          };
+
+          request.onerror = function () {
+            console.log(`Erreur lors de la recherche de l'enregistrement avec l'id ${id}.`);
+          };
+        });
+
+        transaction.oncomplete = function () {
+          console.log('Transaction completed: database modification finished.');
+        };
+
+        transaction.onerror = function () {
+          console.log('Transaction not opened due to error: ', transaction.error);
+        };
+      };
+
+      openDatabase(dbName)
+        .then(db => {
+          updateAnswers(db, storeName, data);
+        })
+        .catch(error => {
+          console.error("Database error:", error);
+        });
+
+      setRenderedOnce(true);
+    }
+  }, [allResponses, matiere, renderedOnce]);
+
+  useEffect(() => {
+    if (!scoreStored) {
+      // Mise à jour du localStorage
+      const currentDate = new Date().toISOString().replace(/\D/g, '').slice(0, -4);
+
+      const reallResponses = allResponses.map(item => ({
+        id: item.id,
+        isCorrect: item.isCorrect
+      }));
+      const localStorageScores = JSON.parse(localStorage.getItem('scores')) || [];
+      localStorageScores.push({ date: currentDate, matiere, score, resultat: reallResponses });
+      localStorage.setItem('scores', JSON.stringify(localStorageScores));
+
+      setScoreStored(true);
+    }
+  }, [allResponses, matiere, score, scoreStored]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -48,7 +145,7 @@ const ScoreComponent = ({ score, matiere}) => {
         opacity: [1, 0],
         easing: 'easeInExpo',
         duration: anime.random(3000, 5000),
-        delay: anime.stagger(10, {start: 500})
+        delay: anime.stagger(10, { start: 500 })
       });
     }
   }, [isSuccess]);

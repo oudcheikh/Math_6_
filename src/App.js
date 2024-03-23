@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { myapp, dbf, auth} from './firebase'; // Importez directement app et dbf depuis le fichier firebase
 import { AuthProvider, useAuth } from './AuthContext';
-import SignUp from './SignUp';
-import SignIn from './SignIn';
+import SignUp from './composents/Inscription/SignUp.js';
+import SignIn from './composents/Inscription/SignIn.js';
 import HomePage from './HomePage'; // Composant pour la page d'accueil
 import Frensh from './composents/MyFrançais'
 import QuizTest from './composents/home/QuizTest';
@@ -61,7 +61,7 @@ import P3A3 from './composents/C11/P3A3';
 import P3A4 from './composents/C13/P3A4';
 import P3A6 from './composents/G4/P3A6';
 import P3A7 from './composents/G5/P3A7';
-import P3A8 from './composents/M4/P3A8';
+import P3A8 from './composents/M4/P3A8.js';
 import Aire2 from './composents/M3/Aire2';
 import P3A5 from'./composents/C14_C15_C16/P3A5';
 import Chap13 from'./composents/C16/Chap13';
@@ -154,7 +154,7 @@ import Orth2005 from './composents/Concours/concours 2005/Français/Orthographe/
 import ConcoursFrançais2005 from './composents/Concours/concours 2005/Français/ConcFrançais'
 import Accueilarab from './composents/Accueilarab' 
 import Acceuilfrançais from './composents/Acceuilfrançais' 
-import ProtectedRoute from './ProtectedRoute.js'; // Assurez-vous d'importer votre nouveau composant
+import ProtectedRoute from './composents/Inscription/ProtectedRoute.js'; // Assurez-vous d'importer votre nouveau composant
 
 
 import AppBar from '@mui/material/AppBar';
@@ -168,7 +168,8 @@ import MathChapters from "./composents/MathChapitre";
 import Revisions from "./composents/Revision";
 import ScoreBoard from "./composents/scoreBoard"
 
-
+//import useSyncWithFirebase from './useSyncWithFirebase'; // Assurez-vous que le chemin d'accès est correct
+import { doc, updateDoc, collection ,addDoc, FieldValue} from 'firebase/firestore';
 
 // Composant pour gérer la redirection basée sur l'état d'authentification
 const AuthenticatedRoute = ({ children }) => {
@@ -179,6 +180,42 @@ const AuthenticatedRoute = ({ children }) => {
 
 function App() {
 
+  const savedUser = localStorage.getItem('user');
+  //useSyncWithFirebase(savedUser);
+  const userData = JSON.parse(savedUser)
+
+  const dataToSync = localStorage.getItem('scores');
+  const scoresArray = JSON.parse(dataToSync);
+
+
+    if (navigator.onLine && scoresArray && userData) {
+      const userDocRef = doc(dbf, "users", userData.phone); // Remplacez "userId" par l'ID de l'utilisateur
+            const nouveauChamp = { 
+                scores: scoresArray
+            };
+
+            const currentDate = new Date().toISOString();
+
+            try {
+                // Mettre à jour le document utilisateur
+                updateDoc(userDocRef, nouveauChamp);
+                
+                // Récupérer une référence à la sous-collection "updates" dans le document utilisateur
+                const updatesCollectionRef = collection(userDocRef, 'updates');
+
+                // Ajouter une nouvelle entrée dans la sous-collection "updates" pour enregistrer la mise à jour
+                addDoc(updatesCollectionRef, {
+                    timestamp: currentDate
+                    // Vous pouvez ajouter d'autres détails de mise à jour ici si nécessaire
+                });
+
+                console.log("Document mis à jour avec succès");
+            } catch (error) {
+                console.error("Erreur lors de la mise à jour du document:", error);
+            }
+
+
+          }
 
   const [value, setValue] = useState(0);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -189,13 +226,20 @@ function App() {
 
   const [user, setUser] = useState(null);
 
+  const syncData = async () => {
+    
+          };
+  
   useEffect(() => {
     // Simule la récupération d'un utilisateur depuis le local storage
     const savedUser = localStorage.getItem('user');
+
+
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     }
   }, []);
+  
 
    // Configurer la persistance de l'authentification au niveau local
   //  useEffect(() => {

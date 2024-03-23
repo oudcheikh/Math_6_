@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -16,7 +16,41 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
 
-function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, navigate, score }) {
+function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, navigate }) {
+  const [totalScore, setTotalScore] = useState(0);
+
+  useEffect(() => {
+
+    console.log('in use effect .................................;;')
+    const handleStorageChange = (event) => {
+      console.log("Storage event:", event);
+      if (event.key === 'scores') {
+        console.log("Scores updated. New value:", event.newValue);
+        const scoresString = event.newValue;
+        const scoresArray = JSON.parse(scoresString);
+        const newTotalScore = calculateTotalScore(scoresArray);
+        console.log("New total score:", newTotalScore);
+        setTotalScore(newTotalScore);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
+  const calculateTotalScore = (scoresArray) => {
+    let total = 0;
+    if (scoresArray) {
+      scoresArray.forEach(score => {
+        total += score.score || 0;
+      });
+    }
+    return total;
+  };
+
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -26,20 +60,14 @@ function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, naviga
 
   const goToHomePage = () => {
     navigate('/myrevison');
-    setDrawerOpen(false); // Ferme le tiroir lors de la navigation
+    setDrawerOpen(false); 
   };
 
   const goToScoreboard = () => {
     navigate('/scoreboard');
-    setDrawerOpen(false); // Ferme le tiroir lors de la navigation
+    setDrawerOpen(false); 
   };
 
-  const goToMycount = () => {
-    navigate('/mycount');
-    setDrawerOpen(false); // Ferme le tiroir lors de la navigation
-  };
-
-  // Gérer le changement de langue ici
   const handleChangeLanguage = (event) => {
     toggleLanguage(event.target.value);
   };
@@ -59,13 +87,10 @@ function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, naviga
             <MenuIcon />
           </IconButton>
           
-          
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} onClick={goToScoreboard} style={{ cursor: 'pointer' }}>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{4566} 🥇
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{Math.ceil(totalScore)} 🥇
           </Typography>
 
-          
-          {/* Conteneur pour aligner le sélecteur de langue à droite */}
           <Box sx={{ flexGrow: 0 }}>
             <Select
               value={t('currentLang')}
@@ -76,7 +101,6 @@ function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, naviga
             >
               <MenuItem value="fr">FR</MenuItem>
               <MenuItem value="ar">عربى</MenuItem>
-              {/* Ajouter d'autres langues au besoin */}
             </Select>
           </Box>
         </Toolbar>
@@ -91,16 +115,6 @@ function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, naviga
           <ListItem button onClick={goToScoreboard}>
             <ListItemIcon><AccountCircleIcon /></ListItemIcon>
             <ListItemText primary={t('myScore')} />
-          </ListItem>
-
-          <ListItem button onClick={goToMycount}>
-            <ListItemIcon><AccountCircleIcon /></ListItemIcon>
-            <ListItemText primary={t('mycompte')} />
-          </ListItem>
-
-          <ListItem button onClick={goToMycount}>
-            <ListItemIcon><AccountCircleIcon /></ListItemIcon>
-            <ListItemText primary={t('devoirs')} />
           </ListItem>
         </List>
       </Drawer>
