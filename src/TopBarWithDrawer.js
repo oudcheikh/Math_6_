@@ -13,23 +13,24 @@ import BookIcon from '@mui/icons-material/Book';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, navigate }) {
-  const [totalScore, setTotalScore] = useState(0);
+function TopBarWithDrawer({  toggleLanguage, t }) {
+
+  const [, setTotalScore] = useState(0);
+  const scoreTotal = useSelector((state) => state.counter.value);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-
-    console.log('in use effect .................................;;')
     const handleStorageChange = (event) => {
-      console.log("Storage event:", event);
       if (event.key === 'scores') {
-        console.log("Scores updated. New value:", event.newValue);
         const scoresString = event.newValue;
         const scoresArray = JSON.parse(scoresString);
         const newTotalScore = calculateTotalScore(scoresArray);
-        console.log("New total score:", newTotalScore);
         setTotalScore(newTotalScore);
       }
     };
@@ -88,7 +89,7 @@ function TopBarWithDrawer({ drawerOpen, setDrawerOpen, toggleLanguage, t, naviga
           </IconButton>
           
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} onClick={goToScoreboard} style={{ cursor: 'pointer' }}>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{Math.ceil(totalScore)} 🥇
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{Math.ceil(scoreTotal)} 🥇
           </Typography>
 
           <Box sx={{ flexGrow: 0 }}>

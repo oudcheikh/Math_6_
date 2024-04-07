@@ -5,6 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 import { StyledText1, FormulaText } from '../Styles/MajorStyles';
+import ExplanationComponent from '../Styles/MajorStyles';
 import './Major.css'; // Adjust path as needed
 import ScoreComponent from '../Scorecomponent';
 
@@ -160,7 +161,11 @@ const QCMComponent = ({ questions }) => {
                 <FormulaText style={{ color: isCorrect ? successColor : failureColor }}>
                   {isCorrect ? 'Bonne réponse!' : 'Mauvaise réponse!'}
                 </FormulaText>
-                <FormulaText>Explication: {currentQuestion.explanation}</FormulaText>
+                
+                {/* //<FormulaText>Explication: {currentQuestion.explanation}</FormulaText> */}
+
+                <ExplanationComponent explanation={currentQuestion.explanation}/>
+
               
 
               </div>

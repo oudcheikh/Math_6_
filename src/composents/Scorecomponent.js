@@ -4,6 +4,12 @@ import { Card } from '@mui/material';
 import './Styles/Scorecomponent.css';
 import imgsucess from './succes.png';
 import imgechec from './echec.png';
+import { useDispatch } from 'react-redux';
+import { addScore } from './features/scores/scoreSlice';
+import { increment } from './features/counter/counterSlice'
+import { dbf } from '../firebase';
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+
 
 const getRandomColor = () => {
   const letters = '0123456789ABCDEF';
@@ -15,11 +21,13 @@ const getRandomColor = () => {
 };
 
 const ScoreComponent = ({ allResponses, score, matiere }) => {
+
   const [renderedOnce, setRenderedOnce] = useState(false);
   const [scoreStored, setScoreStored] = useState(false);
 
   const isSuccess = score >= 50;
 
+  const dispatch = useDispatch();
   useEffect(() => {
     if (!renderedOnce) {
       let dbName = "prepa-français"; // Nom de la base de données
@@ -119,6 +127,48 @@ const ScoreComponent = ({ allResponses, score, matiere }) => {
       const localStorageScores = JSON.parse(localStorage.getItem('scores')) || [];
       localStorageScores.push({ date: currentDate, matiere, score, resultat: reallResponses });
       localStorage.setItem('scores', JSON.stringify(localStorageScores));
+
+          
+      const scoreData = {
+        date: new Date().toISOString().replace(/\D/g, '').slice(0, -4),
+        matiere,
+        score,
+        responses: allResponses.map(({ id, isCorrect }) => ({ id, isCorrect })),
+      };
+
+      // Dispatch l'action pour ajouter le score au store Redux
+      dispatch(addScore(scoreData));
+      dispatch(increment(score));
+
+      const savedUser = localStorage.getItem('user');
+      //useSyncWithFirebase(savedUser);
+      const userData = JSON.parse(savedUser)
+      const savedUserID = localStorage.getItem('userId');
+      //useSyncWithFirebase(savedUser);
+     
+        const userDocRef = doc(dbf, "users", userData.phone + savedUserID); // Remplacez "userId" par l'ID de l'utilisateur
+    
+        try {
+            // Créer un nouvel objet d'entrainement
+            const nouvelEntrainement = {
+                date: currentDate,
+                matiere: matiere, // Vous pouvez modifier cela en fonction de la matière du test
+                score: score, // Supposons que vous avez une fonction calculateScore pour calculer le score
+                resultat: allResponses.map(({ id, isCorrect }) => ({ id, isCorrect })),
+            };
+    
+            // Récupérer une référence à la collection "entrainement" dans le document utilisateur
+            const entrainementCollectionRef = collection(userDocRef, 'entrainement');
+    
+            // Ajouter une nouvelle entrée dans la collection "entrainement" pour enregistrer le résultat du test
+            addDoc(entrainementCollectionRef, nouvelEntrainement);
+    
+            console.log("Résultat du test enregistré avec succès");
+        } catch (error) {
+            console.error("Erreur lors de l'enregistrement du résultat du test:", error);
+        }
+    
+
 
       setScoreStored(true);
     }

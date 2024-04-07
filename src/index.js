@@ -5,22 +5,24 @@ import { BrowserRouter } from 'react-router-dom';
 import { LanguageProvider } from './LanguageProvider';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-import store from './store'
+import { store, persistor } from './store'
 import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
       <Provider store={store}>
-
+      <PersistGate loading={null} persistor={persistor}> 
     <BrowserRouter>
       <LanguageProvider>
         <App />
       </LanguageProvider>
     </BrowserRouter>
+    </PersistGate>
     </Provider>,
 
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change

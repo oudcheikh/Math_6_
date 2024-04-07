@@ -53,18 +53,13 @@ function Acceuil() {
   
   return (
     <div className="app-container">
-      <div className="card-grid">
-        <Card title="Temps passé" content="Savoir le temps passé sur chaque matière" icon={timeIcon} />
-        <Card title="Résultats" content="Résultats des quiz par matière" icon={statsIcon} />
-        <Card title="Quiz du jour" content="Test aléatoire sur tes matières!" icon={quiz} navigateTo="/QuizTest" />
+      <div className="full-width-container">
+        {/* <Card title="Temps passé" content="Savoir le temps passé sur chaque matière" icon={timeIcon} />
+        <Card title="Résultats" content="Résultats des quiz par matière" icon={statsIcon} /> */}
         <Card title="S'entraîner" content="S'entraîner sur tes points faibles!" icon={rocketIcon} navigateTo="/PrepaFrançais" />
       </div>
 
-      <div>
-      <button onClick={handleSynchronizeClick} disabled={isSyncing}>
-        {isSyncing ? 'Synchronizing...' : 'Synchronize with Firestore'}
-      </button>
-    </div>
+  
       <div className="full-width-container">
         <Card title="Science" content="" icon={flask} full navigateTo="/Science" />
         <Card title="Math" content="" icon={calculator} full navigateTo="/Math" />

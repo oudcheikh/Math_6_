@@ -4,6 +4,12 @@ import { Card } from '@mui/material';
 import './Styles/Scorecomponent.css';
 import imgsucess from './succes.png';
 import imgechec from './echec.png';
+import { useDispatch } from 'react-redux';
+import { addScore } from './features/scores/scoreSlice';
+import { increment } from './features/counter/counterSlice'
+import { dbf } from '../firebase';
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+
 //import ScoreTracker from './score/TrackScore'
 
 const getRandomColor = () => {
@@ -97,20 +103,22 @@ const ScoreComponent = ({ allResponses, score, matiere}) => {
   
   console.log("---------------------  test component. score et matière ....",matiere, score)
   console.log("___________________________________________________ all response: ", allResponses)
-  let dbName = "prepa-arabe"; // Nom de la base de données
-let storeName = allResponses[0].matiere; // Nom du store
-let data = allResponses;
+  const dispatch = useDispatch();
 
-console.log(" data to be update .............................  : ", dbName, storeName, data)
-openDatabase(dbName).then(db => {
-    updateAnswers(db, storeName, data);
-}).catch(error => {
-    console.error("Database error:", error);
-});
-  
+  let dbName = "prepa-arabe"; // Nom de la base de données
+  let storeName = allResponses[0].matiere; // Nom du store
+  let data = allResponses;
+
+  console.log(" data to be update .............................  : ", dbName, storeName, data)
+  openDatabase(dbName).then(db => {
+      updateAnswers(db, storeName, data);
+  }).catch(error => {
+      console.error("Database error:", error);
+  });
+    
   //const scores = ScoreTracker(matiere, score)
   ////////////////////////////////////////////////////////
-  const currentDate = new Date().toISOString();
+  const currentDate = new Date().toISOString().replace(/\D/g, '').slice(0, -4);
   const reallResponses = data.map(item => ({
     id: item.id,
     isCorrect: item.isCorrect
@@ -120,6 +128,48 @@ openDatabase(dbName).then(db => {
   localStorageScores.push({ date: currentDate, matiere, score, resultat : reallResponses });
   localStorage.setItem('scores', JSON.stringify(localStorageScores));
   const isSuccess = score >= 50;
+
+  const scoreData = {
+    date: new Date().toISOString().replace(/\D/g, '').slice(0, -4),
+    matiere,
+    score,
+    responses: allResponses.map(({ id, isCorrect }) => ({ id, isCorrect })),
+  };
+
+  // Dispatch l'action pour ajouter le score au store Redux
+  dispatch(addScore(scoreData));
+  dispatch(increment(score));
+
+  const savedUser = localStorage.getItem('user');
+  //useSyncWithFirebase(savedUser);
+  const userData = JSON.parse(savedUser)
+    const savedUserID = localStorage.getItem('userId');
+    //useSyncWithFirebase(savedUser);
+    //const userId = JSON.parse(savedUserID)
+      console.log(" in score update ..............   : ", userData.phone , savedUserID, )
+    const userDocRef = doc(dbf, "users", userData.phone + savedUserID); // Remplacez "userId" par l'ID de l'utilisateur
+
+    try {
+        // Créer un nouvel objet d'entrainement
+        const nouvelEntrainement = {
+            date: currentDate,
+            matiere: matiere, // Vous pouvez modifier cela en fonction de la matière du test
+            score: score, // Supposons que vous avez une fonction calculateScore pour calculer le score
+            resultat: allResponses.map(({ id, isCorrect }) => ({ id, isCorrect })),
+        };
+
+        // Récupérer une référence à la collection "entrainement" dans le document utilisateur
+        const entrainementCollectionRef = collection(userDocRef, 'entrainement');
+
+        // Ajouter une nouvelle entrée dans la collection "entrainement" pour enregistrer le résultat du test
+        addDoc(entrainementCollectionRef, nouvelEntrainement);
+
+        console.log("Résultat du test enregistré avec succès");
+    } catch (error) {
+        console.error("Erreur lors de l'enregistrement du résultat du test:", error);
+    }
+
+
 
 
 

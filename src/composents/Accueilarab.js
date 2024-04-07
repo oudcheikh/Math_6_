@@ -36,10 +36,11 @@ function Acceuil() {
   return (
     <div className="app-container">
       <div className="card-grid">
+{/*         
       <Card title="الوقت المستغرق" content="معرفة الوقت المستغرق في كل مادة" icon={timeIcon} />
-<Card title="حضر للمسابقة" content="حضرمواضيع العربية" icon={statsIcon} navigateTo="/prepaconcoursarabe" />
-<Card title="اختبار اليوم" content="اختبار عشوائي على  موادك" icon={quiz} navigateTo="/QuizTest" />
-
+      <Card title="حضر للمسابقة" content="حضرمواضيع العربية" icon={statsIcon} navigateTo="/prepaconcoursarabe" />
+      <Card title="اختبار اليوم" content="اختبار عشوائي على  موادك" icon={quiz} navigateTo="/QuizTest" />
+ */}
 
 <Card title="تدرب" content="تدرب على نقاط ضعفك" icon={rocketIcon} navigateTo="/PrepaArabe" />
       </div>

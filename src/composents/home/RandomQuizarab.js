@@ -231,7 +231,7 @@ const QCMComponent = ({ questions }) => {
 {!allQuestionsAnswered && currentQuestion && (
       <div className="footer-buttons">
         <button color="secondary">
-        مراجعة قصيرة 
+         'اقرأ جيدا لسؤال'
                </button>
         <IconButton aria-label="next question" onClick={goToNextQuestion} disabled={!QuestionsAnswered || isLastQuestion || allQuestionsAnswered}>
           <ArrowForward />

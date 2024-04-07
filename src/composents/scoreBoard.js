@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ChapterCard from './ChapterCard';
+import { useSelector } from 'react-redux';
 
 const ThemeComponent = () => {
   const [themeScores, setThemeScores] = useState([]);
   const [hasInternet, setHasInternet] = useState(true); // Par défaut, supposons que l'utilisateur a une connexion Internet
   const navigate = useNavigate();
+  const scoreTotal = useSelector((state) => state.counter.value);
 
   useEffect(() => {
     const fetchScores = async () => {
@@ -53,11 +55,12 @@ const ThemeComponent = () => {
   }, []);
 
   const subjectMap = {
-    PRPAHG006: "histoire",
-    PRPAEI006: "educationislamique",
-    PRPASN006: "sciencenaturelle",
-    PRPAAR006: "Arabe",
-    PRPAMA006: "Mathématiques"
+    PRPAHG006: "التاريخ و الجغرافيا",
+    PRPAEI006: "التربية الإسلامية",
+    PRPASN006: "Science Naturelle",
+    PRPAAR006: "العربية",
+    PRPAMA006: "Mathématiques",
+    PRPAFR006: "Français"
   };
 
   const handleNavigation = (matiere) => {
@@ -77,16 +80,14 @@ const ThemeComponent = () => {
 
   return (
     <div>
-      <h2>Choisissez un thème</h2>
-      <p>Lancez une série thématique pour améliorer votre niveau sur les thèmes officiels de l'examen.</p>
-      {hasInternet && (
-        <button style={{ display: 'block', margin: '0 auto', marginBottom: '20px' }}>Mon bouton</button>
-      )}
+      <h2>Ton Score est {Math.ceil(scoreTotal)} 🥇</h2>
+      <p>Lancez ton entrainement sur l'une de matiere pour ogmenter ton score.</p>
+     
       {themeScores.map((theme, index) => (
         <ChapterCard
           key={index}
           chapter={subjectMap[theme.name]}
-          title={`Score: ${Math.ceil(theme.score)}`}
+          title={` ${Math.ceil(theme.score)} 🥇`}
           onClick={() => handleNavigation(theme.name)}
         />
       ))}
