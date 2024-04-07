@@ -50,7 +50,6 @@ function Acceuil() {
     }
   };
   
-  
   return (
     <div className="app-container">
       <div className="full-width-container">
