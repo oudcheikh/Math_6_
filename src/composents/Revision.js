@@ -31,8 +31,12 @@ function Acceuil() {
     <div className="app-container">
     
       <div className="full-width-container">
-        <Card title="اللغة العربية " content="" icon={flask} full navigateTo="/Accueilarab" />
-        <Card title="Français" content="" icon={calculator} full navigateTo="/Acceuilfrançais" />
+        {/* <Card title="اللغة العربية " content="" icon={flask} full navigateTo="/Accueilarab" /> */}
+        {/* <Card title="Français" content="" icon={calculator} full navigateTo="/Acceuilfrançais" /> */}
+
+        <Card title="اللغة العربية " content="" icon={flask} full navigateTo="/PrepaArabe" />
+        <Card title="Français" content="" icon={calculator} full navigateTo="/PrepaFrançais" />
+
       </div>
     </div>
   );

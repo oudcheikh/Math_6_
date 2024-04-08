@@ -54,8 +54,8 @@ const HomePage = () => {
           <p>Votre numéro de téléphone : {user.phone}</p>
           {/* Vous pouvez ajouter plus d'options ou d'informations ici */}
           <div className="full-width-container">
-            <Card title="اللغة العربية " content="" icon={"/images/Icones/arabic-language.png"} full navigateTo="/Accueilarab" />
-            <Card title="Français" content="" icon={"/images/Icones/eiffel-tower.png"} full navigateTo="/Acceuilfrançais" />
+            <Card title="اللغة العربية " content="" icon={"/images/Icones/arabic-language.png"} full navigateTo="/PrepaArabe" />
+            <Card title="Français" content="" icon={"/images/Icones/eiffel-tower.png"} full navigateTo="/PrepaFrançais" />
           </div>
               
         </div>
