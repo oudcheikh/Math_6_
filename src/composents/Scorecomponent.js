@@ -24,6 +24,7 @@ const ScoreComponent = ({ allResponses, score, matiere }) => {
 
   const [renderedOnce, setRenderedOnce] = useState(false);
   const [scoreStored, setScoreStored] = useState(false);
+  const [myscore, setmyscore] = useState(0)
 
   const isSuccess = score >= 50;
 
@@ -124,11 +125,12 @@ const ScoreComponent = ({ allResponses, score, matiere }) => {
         id: item.id,
         isCorrect: item.isCorrect
       }));
+      const thismyscore = (reallResponses.filter(item => item.isCorrect)).length
       const localStorageScores = JSON.parse(localStorage.getItem('scores')) || [];
-      localStorageScores.push({ date: currentDate, matiere, score, resultat: reallResponses });
+      localStorageScores.push({ date: currentDate, matiere, thismyscore, resultat: reallResponses });
       localStorage.setItem('scores', JSON.stringify(localStorageScores));
 
-          
+      setmyscore(thismyscore)   
       const scoreData = {
         date: new Date().toISOString().replace(/\D/g, '').slice(0, -4),
         matiere,
@@ -138,7 +140,7 @@ const ScoreComponent = ({ allResponses, score, matiere }) => {
 
       // Dispatch l'action pour ajouter le score au store Redux
       dispatch(addScore(scoreData));
-      dispatch(increment(score));
+      dispatch(increment(thismyscore)) ;
 
       const savedUser = localStorage.getItem('user');
       //useSyncWithFirebase(savedUser);
@@ -216,13 +218,13 @@ const ScoreComponent = ({ allResponses, score, matiere }) => {
           <div className="success-animation">
             <p>Félicitations ! 🎉</p>
             <img src={imgsucess} alt="Success" className="success-image" />
-            <p>Votre score est {score}.</p>
+            <p>Votre score est {myscore}.</p>
           </div>
         ) : (
           <div className="failure-animation">
             <p>Malheureusement, vous n'avez pas réussi. 😔</p>
             <img src={imgechec} alt="Failure" className="success-image" />
-            <p>Essayez encore, votre score est {score}.</p>
+            <p>Essayez encore, votre score est {myscore}.</p>
           </div>
         )}
       </Card>

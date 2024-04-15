@@ -4,7 +4,7 @@ import SignUp from './composents/Inscription/SignUp.js';
 import SignIn from './composents/Inscription/SignIn.js';
 
 
-import HomePage from './HomePage'; // Composant pour la page d'accueil
+import HomePage from './HomePage.js'; // Composant pour la page d'accueil
 import Frensh from './composents/MyFrançais';
 import QuizTest from './composents/home/QuizTest';
 import QuizTestarab from './composents/home/QuizTestarab';

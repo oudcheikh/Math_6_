@@ -24,26 +24,44 @@ const ThemeComponent = () => {
             const scoresList = scoresArray.map(item => (
               {
               matiere: item.matiere,
-              score: item.score
+              score: item.thismyscore
             }
             ));
 
+            console.log('llllllllllllll : ', scoresList)
+
             const totalScores = scoresList.reduce((acc, item) => {
-              if (item.matiere && typeof item.score === 'number') {
+              if (item.matiere && typeof item.thismyscore === 'number') {
                 acc[item.matiere] = acc[item.matiere] || 0;
-                acc[item.matiere] += item.score;
+                acc[item.matiere] += item.thismyscore;
               }
               return acc;
             }, {});
 
-            // Transformation des scores en un format compatible avec le composant
-            const transformedScoresList = Object.keys(totalScores).map((matiere) => ({
-              name: matiere,
-              score: totalScores[matiere],
-              questions: 10,
-            }));
+            const sommeScores = {};
 
-            setThemeScores(transformedScoresList);
+              // Boucle pour additionner les scores pour chaque matière
+              scoresList.forEach(item => {
+                  if (sommeScores[item.matiere]) {
+                      sommeScores[item.matiere] += item.score;
+                  } else {
+                      sommeScores[item.matiere] = item.score;
+                  }
+              });
+
+              // Transformer l'objet en liste de la forme spécifiée
+              const resultatListe = Object.keys(sommeScores).map(matiere => {
+                  return {
+                      name: matiere,
+                      score: sommeScores[matiere],
+                      questions: 10
+                  };
+              });
+
+              console.log(resultatListe);
+
+            
+            setThemeScores(resultatListe);
           }
         
       } catch (error) {

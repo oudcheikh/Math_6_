@@ -1,11 +1,30 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signInAnonymously } from 'firebase/auth';
 import { dbf } from './../../firebase';
+import { useLanguage } from '../../LanguageProvider';
 import { addDoc, collection, doc, setDoc } from "firebase/firestore";
-
-
+import HomeIcon from '@mui/icons-material/Home';
+import AppsIcon from '@mui/icons-material/Apps';
+import './Styles.css'; //
 const SignUp = () => {
+
+    
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [phone, setPhone] = useState('');
+    const [adresse, setadresse] = useState('');
+    const [ecol, setEcol] = useState('');
+
+    const [adressevalide, setadresseeValide] = useState(false);
+    const [firstvalide, setfirstValide] = useState(false);
+    const [Lastnamevalide, setLastnameValide] = useState(false);
+    const [phonevalide, setPhoneValide] = useState(false);
+    
+    const [isFormValid, setIsFormValide] = useState(false);
+    const [errors, setErrors] = useState({});
+    const { toggleLanguage, t } = useLanguage();
+
   const [user, setUser] = useState({
     name: '',
     lastName: '',
@@ -14,6 +33,10 @@ const SignUp = () => {
   });
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setIsFormValide(adressevalide && firstvalide && Lastnamevalide && phonevalide);
+}, [adressevalide, firstvalide, Lastnamevalide, phonevalide]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -80,11 +103,13 @@ const SignUp = () => {
 
   const handleSubmit = async () => {
     // Vérification des données utilisateur
-    if (!user.name || !user.lastName || !user.address || !user.phone) {
-      setError('Veuillez remplir tous les champs');
-      return;
-    }
+    // if (!phone || !firstName || !lastName || !ecol) {
+    //   setError('Veuillez remplir tous les champs');
+    //   return;
+    // }
 
+    console.log("-------------------------- : ", user)
+    console.log("------------------------------ ; ", phone, firstName, lastName, adresse, ecol)
     try {
       // Authentification de l'utilisateur anonymement avec Firebase
       const auth = getAuth();
@@ -92,11 +117,18 @@ const SignUp = () => {
       const firebaseUser = userCredential.user;
 
 
-      const userId = user.phone; // Utilisez le numéro de téléphone comme identifiant de document, par exemple
+      const userId = phone; // Utilisez le numéro de téléphone comme identifiant de document, par exemple
 
       // Créer une référence au document avec l'identifiant spécifié
       const userDocRef = doc(dbf, 'users', userId+firebaseUser.uid);
       // Ajouter les données utilisateur au document avec l'identifiant spécifié
+      const user = {
+        "name": firstName,
+        "lastName": lastName,
+        "address": adresse,
+        "phone": phone,
+        "ecole":ecol
+    }
       await setDoc(userDocRef, user);
       console.log('Utilisateur enregistré avec succès dans Firestore avec l\'identifiant de document spécifié :', userId);
 
@@ -124,20 +156,136 @@ const SignUp = () => {
       setError('Échec de l\'inscription ou de l\'initialisation des bases de données');
       console.error(error);
     }
+
+
   };
+  const checkFormValidity = () => {
+    setIsFormValide(adressevalide && firstvalide && Lastnamevalide && phonevalide);
+};
+
+
+const validateFirstName = () => {
+    if (firstName.length > 6) {
+        setErrors((prevErrors) => ({ ...prevErrors, firstName: 'Le prénom ne doit pas dépasser 6 caractères' }));
+        setfirstValide(false)
+    } else {
+        setErrors((prevErrors) => ({ ...prevErrors, firstName: '' }));
+        setfirstValide(true)
+
+    }
+    checkFormValidity()
+};
+
+const validateLastName = () => {
+    if (lastName.length > 6) {
+        setErrors((prevErrors) => ({ ...prevErrors, lastName: 'Le nom ne doit pas dépasser 6 caractères' }));
+        setLastnameValide(false)
+    } else {
+        setErrors((prevErrors) => ({ ...prevErrors, lastName: '' }));
+        setLastnameValide(true)
+
+    }
+    checkFormValidity()
+};
+
+const validatePhone = () => {
+    if ((!/^\d+$/.test(phone)) || (phone.length != 9)) {
+        setErrors((prevErrors) => ({ ...prevErrors, phone: 'Le numéro de téléphone doit contenir uniquement 9 chiffres' }));
+        setPhoneValide(false)
+    } else {
+        setErrors((prevErrors) => ({ ...prevErrors, phone: '' }));
+        setPhoneValide(true)
+
+    }
+    checkFormValidity()
+};
+
+// const isFormValid = () => {
+//     return Object.values(errors).every((error) => error === '');
+// };
+
+const Sauvegarder = () => {
+    if (isFormValid) {
+        console.log("Formulaire valide, sauvegarde en cours...");
+    } else {
+        console.log("Le formulaire n'est pas valide. Veuillez remplir correctement tous les champs.");
+    }
+};
 
   return (
-    <div>
-      {error && <p>{error}</p>}
-      <div>
-        <input type="text" name="name" value={user.name} onChange={handleChange} placeholder="Nom" />
-        <input type="text" name="lastName" value={user.lastName} onChange={handleChange} placeholder="Prénom" />
-        <input type="text" name="address" value={user.address} onChange={handleChange} placeholder="Adresse" />
-        <input type="tel" name="phone" value={user.phone} onChange={handleChange} placeholder="Numéro de téléphone" />
-        <button onClick={handleSubmit}>S'inscrire</button>
-      </div>
-    </div>
+    <div> 
+    <div className="profile-container">
+            <div className="profile">
+
+                <div className="profile-info">
+                   
+                    <h2>{t('moncompte')}</h2>
+
+                    
+                    <div className="input-field">
+                        <label htmlFor="firstName">{t('prenom')}</label>
+                        <input type="text" id="firstName" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)}  />
+                        {errors.firstName && <span className="error">{errors.firstName}</span>}
+                    </div>
+                    <div className="input-field">
+                        <label htmlFor="lastName">{t('nom')}</label>
+                        <input type="text" id="lastName" name="lastName" Value={lastName} onChange={(e) => setLastName(e.target.value)}  />
+                        {errors.lastName && <span className="error">{errors.lastName}</span>}
+                    </div>
+                    
+                    <div className="input-field">
+                        <label htmlFor="phone">{t('phone')}</label>
+                        <input type="tel" id="phone"  pattern="[0-9]{10}" name="phone" Value={phone} onChange={(e) => setPhone(e.target.value)} />
+                        {errors.phone && <span className="error">{errors.phone}</span>}
+                    </div>
+
+                    <div className="input-field">
+                        <label htmlFor="phone">{t('Adress')}</label>
+                        <input type="tel"  onChange={(e) => setadresse(e.target.value)}  />
+                        {errors.phone && <span className="error">{errors.phone}</span>}
+                    </div>
+
+
+                    <div className="input-field">
+                        <label htmlFor="phone">{t('ecole')}</label>
+                        <input type="tel"  onChange={(e) => setEcol(e.target.value)}  />
+                        {errors.phone && <span className="error">{errors.phone}</span>}
+                    </div>
+
+
+                    <div>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                    </div>
+                    <button className="save-button" onClick={handleSubmit}>{t('sinscrire')}</button>
+
+                    <div>
+
+
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                    </div>
+                   
+                    <footer>
+            
+
+            
+        </footer>
+                </div>
+              
+
+            </div>
+
+          
+
+        </div>
+        </div>
   );
 };
+//onClick={handleSubmit}
 
 export default SignUp;
