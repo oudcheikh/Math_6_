@@ -471,7 +471,7 @@ function App() {
            <Route path="/Chap13" element ={<Chap13/>}/>
            <Route path="/Aire2" element ={<Aire2/>}/>
            <Route path="/Fraction2" element ={<Fraction2/>}/>
-           <Route path="/Science" element ={<Science/>}/>
+           
 
           <Route path="/EquilibrAlimantaire" element ={<EquilibrAlimantaire/>}/>
           <Route path="/EquilibrEnergitique" element ={<EquilibrEnergitique/>}/>

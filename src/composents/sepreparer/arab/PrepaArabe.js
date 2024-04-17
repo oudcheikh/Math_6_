@@ -7,12 +7,8 @@ import '../Button.css';
 import '../../home/Major.css';
 
 // Composant Card inchangé ...
-
-
 const dbName = "prepa-arabe";
 const storeNames = ["PRPAEI006", "PRPAAR006", "PRPAHG006"];
-
-
 
 
 const Card = ({ title, content, icon, full, navigateTo }) => {

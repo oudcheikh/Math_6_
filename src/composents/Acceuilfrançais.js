@@ -60,10 +60,10 @@ function Acceuil() {
 
   
       <div className="full-width-container">
+      <Card title="Math" content="" icon={calculator} full navigateTo="/Math" />
         <Card title="Science" content="" icon={flask} full navigateTo="/Science" />
-        <Card title="Math" content="" icon={calculator} full navigateTo="/Math" />
         <Card title="Français" content="" icon={Fraçais} full navigateTo="/Français" />
-        <Card title="Concours" content="" icon={Fraçais} full navigateTo="/Concours" />
+        {/* <Card title="Concours" content="" icon={Fraçais} full navigateTo="/Concours" /> */}
       </div>
 
     </div>

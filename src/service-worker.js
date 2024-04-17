@@ -61,6 +61,13 @@ registerRoute(
   })
 );
 
+
+// Skip waiting and claim clients immediately after the new service worker is activated
+self.addEventListener('activate', event => {
+  event.waitUntil(self.clients.claim());
+  self.skipWaiting();
+});
+
 // This allows the web app to trigger skipWaiting via
 // registration.waiting.postMessage({type: 'SKIP_WAITING'})
 self.addEventListener('message', (event) => {

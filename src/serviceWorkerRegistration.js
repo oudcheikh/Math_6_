@@ -65,13 +65,14 @@ function registerValidSW(swUrl, config) {
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {
-              // At this point, the updated precached content has been fetched,
-              // but the previous service worker will still serve the older
-              // content until all client tabs are closed.
+              // Notify that new content is available
               console.log(
                 'New content is available and will be used when all ' +
-                  'tabs for this page are closed. See https://cra.link/PWA.'
+                'tabs for this page are closed. See https://cra.link/PWA.'
               );
+
+              // Force new service worker to take control
+              installingWorker.postMessage({type: 'SKIP_WAITING'});
 
               // Execute callback
               if (config && config.onUpdate) {
@@ -79,8 +80,6 @@ function registerValidSW(swUrl, config) {
               }
             } else {
               // At this point, everything has been precached.
-              // It's the perfect time to display a
-              // "Content is cached for offline use." message.
               console.log('Content is cached for offline use.');
 
               // Execute callback
@@ -96,6 +95,11 @@ function registerValidSW(swUrl, config) {
       console.error('Error during service worker registration:', error);
     });
 }
+
+// Ensure the web app reloads when the service worker is updated
+navigator.serviceWorker.addEventListener('controllerchange', () => {
+  window.location.reload();
+});
 
 function checkValidServiceWorker(swUrl, config) {
   // Check if the service worker can be found. If it can't reload the page.

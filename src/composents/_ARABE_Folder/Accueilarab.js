@@ -52,7 +52,7 @@ function Acceuil() {
         <Card title="دروس التربية الاسلامية" content="" icon={"/images/Icones/praying.png"} full navigateTo="/Islamique" />
 
         {/* <Card title="مواضيع كونكور" content="" icon={"/images/Icones/language-learning.png"} full navigateTo="/ConcoursArabe " /> */}
-        <Card title=" كونكور" content="" icon={"/images/Icones/language-learning.png"} full navigateTo="/NewConcArabe " />
+        {/* <Card title=" كونكور" content="" icon={"/images/Icones/language-learning.png"} full navigateTo="/NewConcArabe " /> */}
       </div>
     </div>
   );
