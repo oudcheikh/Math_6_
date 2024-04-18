@@ -100,8 +100,9 @@ function TopBarWithDrawer({  toggleLanguage, t }) {
               inputProps={{ 'aria-label': 'Without label' }}
               sx={{ color: 'white', '.MuiSvgIcon-root': { color: 'white' } }}
             >
-              <MenuItem value="fr">FR</MenuItem>
               <MenuItem value="ar">عربى</MenuItem>
+              <MenuItem value="fr">FR</MenuItem>
+              
             </Select>
           </Box>
         </Toolbar>

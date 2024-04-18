@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 // import historyIcon from '../../composents/home/Icones/history-book.png'; // Renommé pour éviter un conflit de nom
 // import praying from '../../composents/home/Icones/praying.png';
 // import Fraçais from '../../composents/home/Icones/language-learning.png';
-
 // import calculator from '../../composents/home/Icones/calculator-simple.png';
 import '../../composents/home/Major.css';
 
@@ -35,24 +34,23 @@ const Card = ({ title, content, icon, full, navigateTo }) => {
 function Acceuil() {
   return (
     <div className="app-container">
-      <div className="full-width-container">
-{/*         
+      {/* <div className="card-grid">
         <Card title="الوقت المستغرق" content="معرفة الوقت المستغرق في كل مادة" icon={"/images/Icones/time-twenty-four.png"} />
         <Card title="النتائج" content="نتائج الاختبارات حسب المادة" icon={"/images/Icones/stats.png"} />
-        <Card title="اختبار اليوم" content="اختبار عشوائي على  موادك" icon={"/images/Icones/quiz.png"} navigateTo="/QuizTestarab" /> */}
+        <Card title="اختبار اليوم" content="اختبار عشوائي على  موادك" icon={"/images/Icones/quiz.png"} navigateTo="/QuizTestarab" />
 
 
-        <Card title="تدرب على نقاط ضعفك"  icon={"/images/Icones/rocket-lunch.png"} navigateTo="/PrepaArabe" />
-      </div>
+      </div> */}
       <div className="full-width-container">
+      <Card title="تدرب" content="تدرب على نقاط ضعفك" icon={"/images/Icones/rocket-lunch.png"} navigateTo="/PrepaArabe" />
+        <br></br>
+        <Card title="العربية" content="" icon={"/images/Icones/history-book.png"} full navigateTo="/AcceiulArabic" />
 
-        <Card title="دروس العربية" content="" icon={"/images/Icones/history-book.png"} full navigateTo="/AcceiulArabic" />
-
-        <Card title="دروس التاريخ" content="" icon={"/images/Icones/history-book.png"} full navigateTo="/Histoire" />
-        <Card title="دروس التربية الاسلامية" content="" icon={"/images/Icones/praying.png"} full navigateTo="/Islamique" />
+        <Card title="التاريخ" content="" icon={"/images/Icones/history-book.png"} full navigateTo="/Histoire" />
+        <Card title="التربية الاسلامية" content="" icon={"/images/Icones/praying.png"} full navigateTo="/Islamique" />
 
         {/* <Card title="مواضيع كونكور" content="" icon={"/images/Icones/language-learning.png"} full navigateTo="/ConcoursArabe " /> */}
-        {/* <Card title=" كونكور" content="" icon={"/images/Icones/language-learning.png"} full navigateTo="/NewConcArabe " /> */}
+        <Card title="C2 كونكور" content="" icon={"/images/Icones/language-learning.png"} full navigateTo="/NewConcArabe " />
       </div>
     </div>
   );

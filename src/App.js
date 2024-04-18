@@ -223,7 +223,10 @@ import Alamar from './composents/_ARABE_Folder/Arabe/Assarf/Alamr/Alamar';
 import NewConcArabe from './composents/_ARABE_Folder/Concours/arabe/Tadriib/TadriibImlaa';
 
 
-
+import CalculeAire from './composents/C20/CalculeAire';
+// import SousEtAddFraction from './composents/C17/SousEtAddFraction';
+import PatageInegaux from './composents/C19/PatageInegaux';
+import NomberDecimaux from './composents/C18/NomberDecimaux';
 
 
 import MathChapters from "./composents/MathChapitre";
@@ -567,6 +570,10 @@ function App() {
           <Route path= "/Orth2005" element={<Orth2005/>} />
           <Route path= "/ConcoursFrançais2005" element={<ConcoursFrançais2005/>} /> 
 
+          
+          <Route path= "/PatageInegaux" element={<PatageInegaux/>} />
+          <Route path= "/NomberDecimaux" element={<NomberDecimaux/>} />
+          <Route path= "/CalculeAire" element={<CalculeAire/>} />
 
           {/* Ajoutez des composants pour les autres onglets ici en utilisant <Route> */}
         </Routes>

@@ -84,7 +84,11 @@ const MathChapters = () => {
                 title="Periode 2"
                 onClick={() => navigate('/Periode2')}
               />
-
+       <ChapterCard
+                // chapter="Periode ""
+                title="Periode 3"
+                onClick={() => navigate('/Period3')}
+              />
        
       </Stack>
     </Box>

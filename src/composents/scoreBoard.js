@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ChapterCard from './ChapterCard';
 import { useSelector } from 'react-redux';
+import { useLanguage } from '../LanguageProvider';
+
 
 const ThemeComponent = () => {
   const [themeScores, setThemeScores] = useState([]);
   const [hasInternet, setHasInternet] = useState(true); // Par défaut, supposons que l'utilisateur a une connexion Internet
   const navigate = useNavigate();
   const scoreTotal = useSelector((state) => state.counter.value);
+  const { toggleLanguage, t } = useLanguage();
 
   useEffect(() => {
     const fetchScores = async () => {
@@ -87,7 +90,8 @@ const ThemeComponent = () => {
       PRPAEI006 : "/QuizTestIslamic", // educationislamique
       PRPASN006: "/QuizTestScience", //  sciencenaturelle
       PRPAAR006: "/QuizTestarab", // Arabe
-      PRPAMA006: "/QuizTestMath" // Mathématiques
+      PRPAMA006: "/QuizTestMath", // Mathématiques
+      PRPAFR006: "/QuizTestFrançais" // Français
     };
 
     const route = matiereToRoute[matiere];
@@ -98,8 +102,8 @@ const ThemeComponent = () => {
 
   return (
     <div>
-      <h2>Ton Score est {Math.ceil(scoreTotal)} 🥇</h2>
-      <p>Lancez ton entrainement sur l'une de matiere pour ogmenter ton score.</p>
+      <h2>{t('votreScore')} {Math.ceil(scoreTotal)} 🥇</h2>
+      <p>{t('msgscore')}</p>
      
       {themeScores.map((theme, index) => (
         <ChapterCard

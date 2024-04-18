@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { useLanguage } from './LanguageProvider';
 
 const Card = ({ title, content, icon, full, navigateTo }) => {
   const navigate = useNavigate();
@@ -28,6 +28,7 @@ const Card = ({ title, content, icon, full, navigateTo }) => {
 const HomePage = () => {
   const [user, setUser] = useState(null); // État pour stocker les données utilisateur récupérées depuis localStorage
   const navigate = useNavigate();
+  const { toggleLanguage, t } = useLanguage();
 
   useEffect(() => {
     const userData = localStorage.getItem('user');
@@ -49,9 +50,9 @@ const HomePage = () => {
       <h1>Bienvenue sur Major+</h1>
       {user ? (
         <div>
-          <p>Bonjour, {user.name} {user.lastName}!</p>
-          <p>Votre adresse : {user.address}</p>
-          <p>Votre numéro de téléphone : {user.phone}</p>
+          <p>{user.name} !</p>
+          <p>📍 : {user.address}</p>
+          <p>📞 : {user.phone}</p>
           {/* Vous pouvez ajouter plus d'options ou d'informations ici */}
           <div className="full-width-container">
             <Card title="اللغة العربية " content="" icon={"/images/Icones/arabic-language.png"} full navigateTo="/Accueilarab" />
@@ -61,12 +62,12 @@ const HomePage = () => {
         </div>
 
         
-      
+  
    
       ) : (
         <div>
-          <p>Pour accéder à nos services, veuillez vous inscrire.</p>
-          <button onClick={handleSignUp}>Inscription</button>
+          <p>{t('txtinscription')}</p>
+          <button onClick={handleSignUp}>{t('btinscription')}</button>
         </div>
       )}
     </div>

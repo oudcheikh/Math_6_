@@ -7,6 +7,7 @@ import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import HomeIcon from '@mui/icons-material/Home';
 import AppsIcon from '@mui/icons-material/Apps';
 import './Styles.css'; //
+
 const SignUp = () => {
 
     
@@ -232,27 +233,21 @@ const Sauvegarder = () => {
                         <input type="text" id="lastName" name="lastName" Value={lastName} onChange={(e) => setLastName(e.target.value)}  />
                         {errors.lastName && <span className="error">{errors.lastName}</span>}
                     </div>
-                    
                     <div className="input-field">
                         <label htmlFor="phone">{t('phone')}</label>
                         <input type="tel" id="phone"  pattern="[0-9]{10}" name="phone" Value={phone} onChange={(e) => setPhone(e.target.value)} />
                         {errors.phone && <span className="error">{errors.phone}</span>}
                     </div>
-
                     <div className="input-field">
-                        <label htmlFor="phone">{t('Adress')}</label>
-                        <input type="tel"  onChange={(e) => setadresse(e.target.value)}  />
+                        <label htmlFor="lastName">{t('Adress')}</label>
+                        <input type="text"  onChange={(e) => setadresse(e.target.value)}  />
                         {errors.phone && <span className="error">{errors.phone}</span>}
                     </div>
-
-
                     <div className="input-field">
-                        <label htmlFor="phone">{t('ecole')}</label>
-                        <input type="tel"  onChange={(e) => setEcol(e.target.value)}  />
+                        <label htmlFor="lastName">{t('ecole')}</label>
+                        <input type="text"  onChange={(e) => setEcol(e.target.value)}  />
                         {errors.phone && <span className="error">{errors.phone}</span>}
                     </div>
-
-
                     <div>
                         <br></br>
                         <br></br>
@@ -260,28 +255,16 @@ const Sauvegarder = () => {
                         <br></br>
                     </div>
                     <button className="save-button" onClick={handleSubmit}>{t('sinscrire')}</button>
-
                     <div>
-
-
                         <br></br>
                         <br></br>
                         <br></br>
                         <br></br>
                     </div>
-                   
                     <footer>
-            
-
-            
         </footer>
                 </div>
-              
-
-            </div>
-
-          
-
+            </div>          
         </div>
         </div>
   );
