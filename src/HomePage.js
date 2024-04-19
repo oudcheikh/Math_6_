@@ -47,7 +47,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <h1>Bienvenue sur Major+</h1>
+      <h1>Major+</h1>
       {user ? (
         <div>
           <p>{user.name} !</p>
@@ -55,8 +55,11 @@ const HomePage = () => {
           <p>📞 : {user.phone}</p>
           {/* Vous pouvez ajouter plus d'options ou d'informations ici */}
           <div className="full-width-container">
-            <Card title="اللغة العربية " content="" icon={"/images/Icones/arabic-language.png"} full navigateTo="/Accueilarab" />
-            <Card title="Français" content="" icon={"/images/Icones/eiffel-tower.png"} full navigateTo="/Acceuilfrançais" />
+            {/* <Card title="اللغة العربية " content="" icon={"/images/Icones/arabic-language.png"} full navigateTo="/Accueilarab" />
+            <Card title="Français" content="" icon={"/images/Icones/eiffel-tower.png"} full navigateTo="/Acceuilfrançais" /> */}
+            <p> {t('msgqcmserepete')} </p>
+            <Card title=" العربية " content="" icon={"/images/Icones/arabic-language.png"} full navigateTo="/PrepaArabe" />
+            <Card title="Français" content="" icon={"/images/Icones/eiffel-tower.png"} full navigateTo="/PrepaFrançais" />
           </div>
               
         </div>

@@ -8,9 +8,12 @@ import { StyledText1, FormulaText } from '../Styles/MajorStyles';
 import ExplanationComponent from '../Styles/MajorStyles';
 import './Major.css'; // Adjust path as needed
 import ScoreComponent from '../Scorecomponent';
+import ComponentWithCustomTextDirection from './ComponentWithCustomTextDirection';
+import Grid from '@material-ui/core/Grid';
 
-const QCMComponent = ({ questions }) => {
+const QCMComponent = ({ questions, children, direction }) => {
 
+  const textDirection = direction ? direction : 'inherit';
 
   console.log("---------------------------------   selected qcm : ", questions)
   
@@ -107,6 +110,22 @@ const QCMComponent = ({ questions }) => {
     }
   };
 
+  const handleNavigationNowQuize = (matiere) => {
+    const matiereToRoute = {
+      PRPAHG006: "/QuizTestHistoire", // histoire
+      PRPAEI006 : "/QuizTestIslamic", // educationislamique
+      PRPASN006: "/QuizTestScience", //  sciencenaturelle
+      PRPAAR006: "/QuizTestarab", // Arabe
+      PRPAMA006: "/QuizTestMath", // Mathématiques
+      PRPAFR006: "/QuizTestFrançais" // Français
+    };
+
+    const route = matiereToRoute[matiere];
+    if (route) {
+      navigate(route);
+    }
+  };
+
   const handleReset = () => {
     setCurrentQuestionIndex(0);
     setSelectedOption('');
@@ -121,7 +140,7 @@ const QCMComponent = ({ questions }) => {
 
   return (
    
-    <div className="app-container">
+    <div className="app-container" style={{ direction: "ltr" }} >
        {!allQuestionsAnswered && currentQuestion && (
       <div style={{ display: 'flex', alignItems: 'center', width: "100%" }}>
         <IconButton variant="outlined" color="primary" onClick={handleClick}>
@@ -228,9 +247,19 @@ const QCMComponent = ({ questions }) => {
       </Card>
     ))}
    
-    <Button variant="contained" color="primary" onClick={handleReset} style={{ marginTop: '10px', display: 'block' }}>
-      Restart Quiz
-    </Button>
+   <Grid container spacing={2}>
+      <Grid item xs={6}>
+        <Button variant="contained" color="primary" onClick={handleReset} style={{ marginTop: '10px', width: '100%' }}>
+          le meme Quiz
+        </Button>
+      </Grid>
+      <Grid item xs={6}>
+        <Button variant="contained" color="secondary" onClick={handleNavigationNowQuize(questions[0].matiere)} style={{ marginTop: '10px', width: '100%' }}>
+          Nouveau Quiz
+        </Button>
+      </Grid>
+    </Grid>
+
   </div>
 )}
 
@@ -240,7 +269,7 @@ const QCMComponent = ({ questions }) => {
 {!allQuestionsAnswered && currentQuestion && (
       <div className="footer-buttons">
         <button color="secondary">
-          Mini-cours
+          -------
         </button>
         <IconButton aria-label="next question" onClick={goToNextQuestion} disabled={!QuestionsAnswered || isLastQuestion || allQuestionsAnswered}>
           <ArrowForward />

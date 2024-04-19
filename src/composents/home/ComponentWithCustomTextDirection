@@ -1,0 +1,14 @@
+import React from 'react';
+
+const ComponentWithCustomTextDirection = ({ children, direction }) => {
+  // Si la direction est spécifiée, utilisez-la, sinon utilisez la direction par défaut
+  const textDirection = direction ? direction : 'inherit';
+  
+  return (
+    <div style={{ direction: textDirection }}>
+      {children}
+    </div>
+  );
+};
+
+export default ComponentWithCustomTextDirection;

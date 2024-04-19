@@ -36,7 +36,7 @@ function ExamenQCM() {
 
      return (
          <div>
-           <QCMComponent questions={filteredAndSortedQCMs.slice(0, 7)} />
+           <QCMComponent questions={filteredAndSortedQCMs.slice(0, 10)} />
          </div>
        );
      };

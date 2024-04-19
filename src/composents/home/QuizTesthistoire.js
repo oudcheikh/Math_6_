@@ -35,7 +35,7 @@ function ExamenQCM() {
       console.log("fetch data     from .................... test ..................   :    ", qcmList)
      return (
          <div>
-           <QCMComponent questions={filteredAndSortedQCMs.slice(0, 2)} />
+           <QCMComponent questions={filteredAndSortedQCMs.slice(0, 10)} />
          </div>
        );
      };

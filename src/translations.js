@@ -17,7 +17,8 @@ const translations = {
       devoirs :"mes devoirs",
       sinscrire:"s'inscrire",
       msgscore : "Lancez votre entrainement sur l'une de matières pour augmenter ton score.",
-      votreScore : "Votre Score est " 
+      votreScore : "Votre Score est " ,
+      msgqcmserepete :"Entraînement avec des questions renouvelées en permanence."
 
       // ... autres traductions
     },
@@ -31,14 +32,23 @@ const translations = {
       prenom : "الإسم",
       ecole: "المدرسة",
       myScore: "نتيجتي",
-      myCourses: "دوراتي",
+      myCourses:"المواد",
       mycompte : "حسابي",
       devoirs :"واجباتي",
       moncompte : "حسابي",
       sinscrire:"تسجيل",
       
-      msgscore : "ابدأ تدريبك على أحد الموضوعات لزيادة درجاتك.",
-      votreScore : "درجاتك هي  " 
+      msgscore : "ابدأ التدريب على أحد المواد لزيادة درجاتك",
+      votreScore : "درجاتك  " ,
+      msgqcmserepete : "تدريب مع أسئلة تتجدد باستمرار."
+
+
+
+
+
+
+
+
       
       // ... autres traductions
     }
