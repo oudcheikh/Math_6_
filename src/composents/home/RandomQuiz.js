@@ -127,14 +127,15 @@ const QCMComponent = ({ questions, children, direction }) => {
   };
 
   const handleReset = () => {
-    setCurrentQuestionIndex(0);
-    setSelectedOption('');
-    setUserResponses([]);
-    setIsCorrect(null);
-    setAllQuestionsAnswered(false);
-    setFinalScore(null);
-    setScore(0);
-    setIsRotated(false);
+    // setCurrentQuestionIndex(0);
+    // setSelectedOption('');
+    // setUserResponses([]);
+    // setIsCorrect(null);
+    // setAllQuestionsAnswered(false);
+    // setFinalScore(null);
+    // setScore(0);
+    // setIsRotated(false);
+    navigate("/scoreboard");
     
   };
 
@@ -156,7 +157,7 @@ const QCMComponent = ({ questions, children, direction }) => {
       <br />
 
       {!allQuestionsAnswered && currentQuestion && (
-        <Card className={`question-card ${isRotated ? 'card-rotated' : ''}`}>
+        <Card className={`question-card ${isRotated ? 'card-rotated' : ''}`} >
           <CardContent>
             {(!isRotated || !showFeedback) ? (
               <>
@@ -250,14 +251,10 @@ const QCMComponent = ({ questions, children, direction }) => {
    <Grid container spacing={2}>
       <Grid item xs={6}>
         <Button variant="contained" color="primary" onClick={handleReset} style={{ marginTop: '10px', width: '100%' }}>
-          le meme Quiz
-        </Button>
-      </Grid>
-      <Grid item xs={6}>
-        <Button variant="contained" color="secondary" onClick={handleNavigationNowQuize(questions[0].matiere)} style={{ marginTop: '10px', width: '100%' }}>
           Nouveau Quiz
         </Button>
       </Grid>
+      
     </Grid>
 
   </div>

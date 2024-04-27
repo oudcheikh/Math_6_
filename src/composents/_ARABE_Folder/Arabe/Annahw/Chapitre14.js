@@ -14,7 +14,7 @@ const C5 = () => {
         <Container >
 
             <button className="continue-button" >
-                <FormulaTextF> اسم الفاعل</FormulaTextF>
+                <FormulaTextF> اسم الفاعل </FormulaTextF>
             </button>
 
             <br></br>

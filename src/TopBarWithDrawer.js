@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
+import './TopBar.css'; // Assurez-vous de créer ce fichier CSS
+import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -18,6 +17,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 function TopBarWithDrawer({  toggleLanguage, t }) {
+
+
 
   const [, setTotalScore] = useState(0);
   const scoreTotal = useSelector((state) => state.counter.value);
@@ -60,7 +61,7 @@ function TopBarWithDrawer({  toggleLanguage, t }) {
   };
 
   const goToHomePage = () => {
-    navigate('/myrevison');
+    navigate('/');
     setDrawerOpen(false); 
   };
 
@@ -70,45 +71,30 @@ function TopBarWithDrawer({  toggleLanguage, t }) {
   };
 
   const handleChangeLanguage = (event) => {
+    console.log("_____________________________ : ", event.target.value)
     toggleLanguage(event.target.value);
   };
 
   return (
-    <>
-      <AppBar position="fixed">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-            onClick={() => setDrawerOpen(true)}
-          >
-            <MenuIcon />
-          </IconButton>
-          
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} onClick={goToScoreboard} style={{ cursor: 'pointer' }}>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{Math.ceil(scoreTotal)} 🥇
-          </Typography>
+   
+    <div className="top-bar">
+      <div className="menu-button" onClick={() => setDrawerOpen(true)}>
+        ☰
+      </div>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Select
-              value={t('currentLang')}
-              onChange={handleChangeLanguage}
-              displayEmpty
-              inputProps={{ 'aria-label': 'Without label' }}
-              sx={{ color: 'white', '.MuiSvgIcon-root': { color: 'white' } }}
-            >
-              <MenuItem value="ar">عربى</MenuItem>
-              <MenuItem value="fr">FR</MenuItem>
-              
-            </Select>
-          </Box>
-        </Toolbar>
-      </AppBar>
+      <div className="score" onClick={goToScoreboard}>
+        {Math.ceil(scoreTotal)} 🥇
+      </div>
 
-      <Drawer open={drawerOpen} onClose={toggleDrawer(false)}>
+      <div className="language-select">
+        <select onChange={handleChangeLanguage} aria-label="Select language">
+          <option value="ar">عربى</option>
+          <option value="fr">FR</option>
+        </select>
+      </div>
+
+
+        <Drawer open={drawerOpen} onClose={toggleDrawer(false)}>
         <List>
           <ListItem button onClick={goToHomePage}>
             <ListItemIcon><BookIcon /></ListItemIcon>
@@ -120,7 +106,11 @@ function TopBarWithDrawer({  toggleLanguage, t }) {
           </ListItem>
         </List>
       </Drawer>
-    </>
+
+
+      
+
+    </div>
   );
 }
 

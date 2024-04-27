@@ -298,7 +298,7 @@ function App() {
     // Simule la récupération d'un utilisateur depuis le local storage
     const savedUser = localStorage.getItem('user');
 
-
+    toggleLanguage('ar');
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     }

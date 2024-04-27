@@ -1,46 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import QCMComponent from './RandomQuizarab';
+import { fetchResultsFromStore } from '../../SyncFirebase'
 
-const ExamenQCM = () => {
-    const questions = [
-        {
-          "text": "متى وقعت غزوة بدر و ما نتائجها",
-          "correctAnswer": " ال 17 من رمضان و انتهت بانتصار المسلمين",
-          "explanation": "وقعت في ال 17 من رمضان من السنة الثانية للهجرة و انتهت بانتصاؤ المسلمين",
-          "matiere" : "Arabe",
-          "options": [
-            " ال 17 من رمضان و انتهت بانتصار المسلمين",
-            "ال 17 من شعبان و انتهت بانتصار الكفار"
-          ]
-        },
-        {
-          "text": "متى وقعت غزوة احد و ما نتائجها",
-          "correctAnswer": "السابع من الشوال و انتهت باستشهاد  عدد من المسلمين",
-          "explanation": "وقعت غزوة احد في السابع من الشوال و انتهت باستشهاد 70 من المسلمين",
-          "matiere" : "Arabe",
-          "options": [
-            "السابع من الشوال و انتهت باستشهاد  عدد من المسلمين",
-            "السابع من رمضان و انتهت بانتصار الكفار"
-          ]
-        },
-        {
-          "text": "ما سبب غزوة الخندق ؟",
-          "correctAnswer": "تحالف اليهود و قريش",
-          "explanation": "وقعت غزوة الخندق بسبب تحالف اليهود مع المشركين",
-          "matiere" : "Arabe",
-          "options": [
-            "تحالف اليهود و قريش",
-            "تحالف المسلمين مع اليهود",
-            "تحالف المشركين مع المسلمين"
-          ]
-        },
-        // Continuer pour les autres questions
-      ];
-    return (
-        <div>
-          <QCMComponent questions={questions} />
-        </div>
-      );
+
+function ExamenQCM() {
+  const [qcmList, setQcmList] = useState([]);
+
+  const chapter = "educationislamique";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchResultsFromStore("prepa-arabe", "PRPAAR006", "PRPAAR006");
+        setQcmList(data);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données :', error);
+      }
     };
+
+    fetchData();
+    const minNbCorrectAnswer = Math.min(...qcmList.map(qcm => qcm.nbCorrectAnswer));
+  // Remarque: Vous pouvez ajuster le critère de tri selon vos besoins
+    const filteredAndSortedQCMs = qcmList
+    .filter(qcm => qcm.nbCorrectAnswer === minNbCorrectAnswer)
+    .sort((a, b) => a.nbCorrectAnswer - b.nbCorrectAnswer); // Ou tout autre critère de tri
+
+    console.log("yyyy  quizFRançais .................. : ", qcmList)
+
+    // Clean-up function
+    return () => {
+      // Perform any cleanup if necessary
+    };
+  }, []); // Exécutez l'effet à chaque fois que le chapitre change
+  const minNbCorrectAnswer = Math.min(...qcmList.map(qcm => qcm.nbCorrectAnswer));
+  // Remarque: Vous pouvez ajuster le critère de tri selon vos besoins
+    const filteredAndSortedQCMs = qcmList
+    .filter(qcm => qcm.nbCorrectAnswer === minNbCorrectAnswer)
+    .sort((a, b) => a.nbCorrectAnswer - b.nbCorrectAnswer); // Ou tout autre critère de tri
+
+    console.log("filteredAndSortedQCMs : ", filteredAndSortedQCMs);
+
+
+     return (
+         <div>
+           <QCMComponent questions={filteredAndSortedQCMs.slice(0, 10)} />
+         </div>
+       );
+     };
     
-    export default ExamenQCM;
+     export default ExamenQCM;

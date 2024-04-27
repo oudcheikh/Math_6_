@@ -105,14 +105,15 @@ const QCMComponent = ({ questions }) => {
   };
 
   const handleReset = () => {
-    setCurrentQuestionIndex(0);
-    setSelectedOption('');
-    setUserResponses([]);
-    setIsCorrect(null);
-    setAllQuestionsAnswered(false);
-    setFinalScore(null);
-    setScore(0);
-    setIsRotated(false);
+    // setCurrentQuestionIndex(0);
+    // setSelectedOption('');
+    // setUserResponses([]);
+    // setIsCorrect(null);
+    // setAllQuestionsAnswered(false);
+    // setFinalScore(null);
+    // setScore(0);
+    // setIsRotated(false);
+    navigate("/scoreboard");
     
   };
 
@@ -120,7 +121,8 @@ const QCMComponent = ({ questions }) => {
    
     <div className="app-container">
        {!allQuestionsAnswered && currentQuestion && (
-      <div style={{ display: 'flex', alignItems: 'center', width: "100%" }}>
+      
+      <div style={{ display: 'flex', alignItems: 'center', width: "100%", direction: "ltr"  }}>
         <IconButton variant="outlined" color="primary" onClick={handleClick}>
           <CloseIcon />
         </IconButton>
@@ -129,6 +131,7 @@ const QCMComponent = ({ questions }) => {
           {currentQuestionIndex + 1}/{questions.length}
         </span>
       </div>
+
     )}
 
       <br />
@@ -229,7 +232,7 @@ const QCMComponent = ({ questions }) => {
 
 
 {!allQuestionsAnswered && currentQuestion && (
-      <div className="footer-buttons">
+      <div className="footer-buttons" style={{ direction: "ltr" }}>
         <button color="secondary">
          'اقرأ جيدا لسؤال'
                </button>

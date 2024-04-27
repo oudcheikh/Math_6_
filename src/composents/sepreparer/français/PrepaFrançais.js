@@ -4,6 +4,8 @@ import flask from '../../home/Icones/flask-potion.png';
 import Fraçais from '../../home/Icones/language-learning.png';
 import calculator from '../../home/Icones/calculator-simple.png';
 import { synchronizeWithFirestore } from '../../../SyncFirebase';
+import { useLanguage } from '../../../LanguageProvider';
+
 import '../../home/Major.css';
 
 // Composant Card inchangé ...
@@ -37,7 +39,7 @@ function Acceuil() {
   const [databaseExists, setDatabaseExists] = useState(true);
   const [storeDataStatus, setStoreDataStatus] = useState({}); // Initialiser l'état pour stocker les résultats
   const [matiereInlocal, setmatiereInlocal] = useState([]);
-
+  const { toggleLanguage, t } = useLanguage();
   const handleResults = (results) => {
     // Faire quelque chose avec les résultats
     console.log("Résultats de la vérification des stores :", results);
@@ -211,6 +213,7 @@ checkDataInStoresUsingIndex(dbName, storeNames, (results) => {
      <div className="full-width-container">
         <button onClick={handleSynchronizeClick} disabled={isSyncing} className="download-button">
           {isSyncing ? 'Recuperation en cours ...' : '   Recuperer le contenu '}
+          
         </button>
       </div>)}
 

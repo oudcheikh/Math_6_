@@ -100,6 +100,7 @@ const ThemeComponent = () => {
     }
   };
 
+
   return (
     <div>
       <h2>{t('votreScore')} {Math.ceil(scoreTotal)} 🥇</h2>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from './LanguageProvider';
-
+import ChapterCard from './composents/ChapterCard'
 const Card = ({ title, content, icon, full, navigateTo }) => {
   const navigate = useNavigate();
 
@@ -26,9 +26,49 @@ const Card = ({ title, content, icon, full, navigateTo }) => {
 
 
 const HomePage = () => {
+  const [themeScores, setThemeScores] = useState([{
+    "name": "PRPAHG006"
+},
+{
+  "name": "PRPAFR006"
+},{
+  "name": "PRPAAR006"
+},{
+  "name": "PRPAEI006"
+},{
+  "name": "PRPASN006"
+},{
+  "name": "PRPAMA006"
+},
+]);
   const [user, setUser] = useState(null); // État pour stocker les données utilisateur récupérées depuis localStorage
   const navigate = useNavigate();
   const { toggleLanguage, t } = useLanguage();
+
+  const subjectMap = {
+    PRPAHG006: "التاريخ و الجغرافيا",
+    PRPAEI006: "التربية الإسلامية",
+    PRPASN006: "Science Naturelle",
+    PRPAAR006: "العربية",
+    PRPAMA006: "Mathématiques",
+    PRPAFR006: "Français"
+  };
+
+const handleNavigation = (matiere) => {
+  const matiereToRoute = {
+    PRPAHG006: "/QuizTestHistoire", // histoire
+    PRPAEI006 : "/QuizTestIslamic", // educationislamique
+    PRPASN006: "/QuizTestScience", //  sciencenaturelle
+    PRPAAR006: "/QuizTestarab", // Arabe
+    PRPAMA006: "/QuizTestMath", // Mathématiques
+    PRPAFR006: "/QuizTestFrançais" // Français
+  };
+
+  const route = matiereToRoute[matiere];
+  if (route) {
+    navigate(route);
+  }
+};
 
   useEffect(() => {
     const userData = localStorage.getItem('user');
@@ -45,6 +85,9 @@ const HomePage = () => {
     navigate('/myrevison'); // Rediriger vers la page "/myrevision"
   };
 
+  console.log("--------------themeScores-------- : ", themeScores)
+
+
   return (
     <div>
       <h1>Major+</h1>
@@ -58,8 +101,22 @@ const HomePage = () => {
             {/* <Card title="اللغة العربية " content="" icon={"/images/Icones/arabic-language.png"} full navigateTo="/Accueilarab" />
             <Card title="Français" content="" icon={"/images/Icones/eiffel-tower.png"} full navigateTo="/Acceuilfrançais" /> */}
             <p> {t('msgqcmserepete')} </p>
+
+            {themeScores.map((theme, index) => (
+        <ChapterCard
+          key={index}
+          chapter={subjectMap[theme.name]}
+          
+          onClick={() => handleNavigation(theme.name)}
+        />
+      ))}
+{/*  
             <Card title=" العربية " content="" icon={"/images/Icones/arabic-language.png"} full navigateTo="/PrepaArabe" />
             <Card title="Français" content="" icon={"/images/Icones/eiffel-tower.png"} full navigateTo="/PrepaFrançais" />
+          
+ */}
+
+         
           </div>
               
         </div>

@@ -229,6 +229,40 @@ export const synchronizeWithFirestore = async (section) => {
 };
 
 
+// Fonction pour synchroniser avec Firestore
+export const synchronizeWithFirestoreTotal = async () => {
+  // Déclaration de la variable collections
+  let collections; // Correction ici
+
+   // Utilisation de else if pour une meilleure clarté
+    collections = [
+      { section : "prepa-français", firestore: 'qcm-prpafr006', indexedDB: 'PRPAFR006' }, // Correction des valeurs indexedDB pour correspondre aux firestore
+      { section : "prepa-français", firestore: 'qcm-prpama006', indexedDB: 'PRPAMA006' },
+      { section : "prepa-français", firestore: 'qcm-prpasn006', indexedDB: 'PRPASN006' },
+      { section : "prepa-arabe", firestore: 'qcm-prpaei006', indexedDB: 'PRPAEI006' },
+      {section : "prepa-arabe", firestore: 'qcm-prpaar006', indexedDB: 'PRPAAR006' },
+      { section : "prepa-arabe", firestore: 'qcm-prpahg006', indexedDB: 'PRPAHG006' },
+    ];
+  
+
+  // Vérifie si collections a été défini
+  if (!collections) {
+    console.error('Section non reconnue ou collections non définies pour la section:',);
+    return; // Sortie précoce si collections n'est pas défini
+  }
+
+  for (const { section, firestore, indexedDB } of collections) {
+    try {
+      const qcms = await fetchQCMsFromFirestore(firestore);
+      await addDataToIndexedDBStore(section, indexedDB, qcms);
+      console.log(`Succès : Les données de ${firestore} ont été ajoutées à ${indexedDB}`);
+    } catch (error) {
+      console.error(`Erreur lors de l'ajout des données de ${firestore} à ${indexedDB}:`, error);
+    }
+  }
+};
+
+
 
 // Fonction pour rechercher les QCM par chapitre
 export const fetchResultsFromStore = async (dbName, storeName, filterCriteria) => {

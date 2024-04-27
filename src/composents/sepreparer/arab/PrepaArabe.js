@@ -203,10 +203,14 @@ checkDataInStoresUsingIndex(dbName, storeNames, (results) => {
       {storeDataStatus['PRPAEI006'] && (
         <Card title="التربية الاسلامية" content="" icon={praying} full navigateTo="/QuizTestIslamic" />
       )}
+
+      {storeDataStatus['PRPAAR006'] && (
+        <Card title= "العربية" content="" icon={praying} full navigateTo="/QuizTestarab" />
+      )}
      {matiereInlocal.length > 0 && (
      <div className="full-width-container">
         <button onClick={handleSynchronizeClick} disabled={isSyncing} className="download-button">
-          {isSyncing ? 'Recuperation en cours ...' : '   Recuperer le contenu '}
+          {isSyncing ? '....جاريي إضافة المحتوا' : "أضف المحتوى"}
         </button>
       </div>)}
 

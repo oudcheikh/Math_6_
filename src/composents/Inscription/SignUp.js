@@ -6,6 +6,7 @@ import { useLanguage } from '../../LanguageProvider';
 import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import HomeIcon from '@mui/icons-material/Home';
 import AppsIcon from '@mui/icons-material/Apps';
+import {synchronizeWithFirestoreTotal} from "../../SyncFirebase"
 import './Styles.css'; //
 
 const SignUp = () => {
@@ -150,6 +151,9 @@ const SignUp = () => {
 
       // Réinitialiser l'erreur si l'inscription réussit
       setError('');
+
+
+      await synchronizeWithFirestoreTotal()
 
       // Rediriger vers la page d'accueil ou le tableau de bord après l'inscription
       navigate('/');
