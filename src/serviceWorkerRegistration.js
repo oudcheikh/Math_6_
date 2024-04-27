@@ -98,7 +98,9 @@ function registerValidSW(swUrl, config) {
 
 // Ensure the web app reloads when the service worker is updated
 navigator.serviceWorker.addEventListener('controllerchange', () => {
-  window.location.reload();
+  if (window.confirm("Une nouvelle version est disponible. Voulez-vous recharger pour utiliser la dernière version ?")) {
+    window.location.reload();
+  }
 });
 
 function checkValidServiceWorker(swUrl, config) {
