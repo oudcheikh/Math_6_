@@ -220,7 +220,7 @@ export const FormulaBox = styled.div`
 `;
 
 export const FormulaText = styled.p`
-padding: 10px 20px;
+padding: 3px 10px;
 align-items: center;
 font-size: 1.2em;  // Increased font size for emphasis
 font-family: 'Comic Sans MS', sans-serif;

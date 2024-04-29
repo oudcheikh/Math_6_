@@ -232,10 +232,8 @@ const QCMComponent = ({ questions }) => {
 
 
 {!allQuestionsAnswered && currentQuestion && (
-      <div className="footer-buttons" style={{ direction: "ltr" }}>
-        <button color="secondary">
-         'اقرأ جيدا لسؤال'
-               </button>
+      <div style={{ textAlign: 'center', padding: '2px 0' }}>
+       
         <IconButton aria-label="next question" onClick={goToNextQuestion} disabled={!QuestionsAnswered || isLastQuestion || allQuestionsAnswered}>
           <ArrowForward />
         </IconButton>

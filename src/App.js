@@ -338,7 +338,9 @@ function App() {
         //navigate={navigate}
       />
 
-        <div style={{ marginTop: 64 }}>
+        <div style={{ marginTop: 10
+        
+        }}>
 
   
             <Routes>
