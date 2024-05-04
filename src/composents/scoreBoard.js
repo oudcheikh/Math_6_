@@ -102,7 +102,7 @@ const ThemeComponent = () => {
 
 
   return (
-    <div>
+    <div style={{ textAlign: 'center', padding: '2px 0', marginLeft: '20px', marginRight: '20px', direction: "ltr"  }} >
       <h2>{t('votreScore')} {Math.ceil(scoreTotal)} 🥇</h2>
       <p>{t('msgscore')}</p>
      
@@ -110,8 +110,9 @@ const ThemeComponent = () => {
         <ChapterCard
           key={index}
           chapter={subjectMap[theme.name]}
-          title={` ${Math.ceil(theme.score)} 🥇`}
+          title={` ${Math.ceil(theme.score)}`}
           onClick={() => handleNavigation(theme.name)}
+          showMedal={true}
         />
       ))}
     </div>

@@ -89,7 +89,7 @@ const handleNavigation = (matiere) => {
 
 
   return (
-    <div>
+    <div style={{ textAlign: 'center', padding: '2px 0', marginLeft: '20px', marginRight: '20px' }} >
       <h1>Major+</h1>
       {user ? (
         <div>

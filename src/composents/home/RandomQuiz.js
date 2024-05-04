@@ -51,7 +51,7 @@ const QCMComponent = ({ questions, children, direction }) => {
     setTimeout(() => {
       setShowFeedback(true);
       checkAnswer(option); // Call checkAnswer here
-    }, 1200);
+    }, 1500);
   };
 
   const checkAnswer = (option) => {
@@ -177,7 +177,7 @@ const QCMComponent = ({ questions, children, direction }) => {
                 </div>
               </>
             ) : (
-              <div style={{ textAlign: 'center' }}>
+              <div className="text-content" style={{ textAlign: 'center' }}>
                 <FormulaText style={{ color: isCorrect ? successColor : failureColor }}>
                   {isCorrect ? 'Bonne réponse!' : 'Mauvaise réponse!'}
                 </FormulaText>

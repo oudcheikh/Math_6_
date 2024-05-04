@@ -1,8 +1,13 @@
 /* Exemple pour un conteneur parent hypothétique */
 .container {
   padding: 0;
+  margin: 0;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
 
 .top-bar {
     display: flex;
@@ -12,7 +17,7 @@
     padding: 5px 5px;
     margin: 0;
     width: 100%; 
- 
+    box-sizing: border-box; 
   }
   
   .menu-button,

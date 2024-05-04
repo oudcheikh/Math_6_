@@ -122,18 +122,15 @@
     transform: rotateY(0deg);
     opacity: 1;
   }
-  50% {
-    opacity: 0; /* Fade out the content in the middle of the rotation */
-  }
   to {
-    transform: rotateY(180deg);
-    opacity: 1;
+    transform: rotateY(90deg);
+    opacity: 0; /* Fade out the content as the card rotates */
   }
 }
 
   
   .card-rotated {
-    animation: rotateCard360 2s ease-in-out;
+    animation: rotateCard360 1.5s ease-in-out;
   }
   
   .option-button.selected {

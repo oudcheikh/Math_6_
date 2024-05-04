@@ -40,7 +40,7 @@ const translations = {
       
       msgscore : "ابدأ التدريب على أحد المواد لزيادة درجاتك",
       votreScore : "درجاتك  " ,
-      msgqcmserepete : "تدريب مع أسئلة تتجدد باستمرار."
+      msgqcmserepete : "تدرب مع أسئلة تتجدد باستمرار."
 
 
 

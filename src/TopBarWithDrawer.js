@@ -77,7 +77,7 @@ function TopBarWithDrawer({  toggleLanguage, t }) {
 
   return (
    
-    <div className="top-bar">
+    <div className="top-bar" style={{ direction: "ltr" }}>
       <div className="menu-button" onClick={() => setDrawerOpen(true)}>
         ☰
       </div>
