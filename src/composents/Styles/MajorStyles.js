@@ -320,7 +320,13 @@ export const StyledText1 = styled.p`
     &:hover {
         transform: scale(1.05);
     }
+    /* Ajout du style de texte */
+    color: black; /* Couleur du texte en noir */
+    font-weight: normal; /* Texte normal, non gras */
+    text-align: center; /* Alignement centré */
+    text-transform: none; /* Annule la transformation du texte */
 `;
+
 export const VerifieButton = styled.button`
   border-radius: 5px;
   background-color: #45a05c;

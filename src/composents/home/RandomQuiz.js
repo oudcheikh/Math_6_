@@ -171,7 +171,7 @@ const QCMComponent = ({ questions, children, direction }) => {
                       fullWidth
                       className="option-button"
                     >
-                      <StyledText1>{option}</StyledText1>
+                      <StyledText1>{option.toLowerCase()}</StyledText1>
                     </Button>
                   ))}
                 </div>
