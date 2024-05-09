@@ -7,6 +7,7 @@ import ArrowForward from '@mui/icons-material/ArrowForward';
 import { StyledText1, FormulaText } from '../Styles/MajorStyles';
 import './Major.css'; // Adjust path as needed
 import ScoreComponent from '../Scorecomponentarab';
+import Grid from '@material-ui/core/Grid';
 
 const QCMComponent = ({ questions }) => {
 
@@ -102,6 +103,18 @@ const QCMComponent = ({ questions }) => {
       setAllQuestionsAnswered(true);
       calculateFinalScore();
     }
+  };
+
+  const handleResetSameQCM = () => {
+    setCurrentQuestionIndex(0);
+    setSelectedOption('');
+    setUserResponses([]);
+    setIsCorrect(null);
+    setAllQuestionsAnswered(false);
+    setFinalScore(null);
+    setScore(0);
+    setIsRotated(false);
+    
   };
 
   const handleReset = () => {
@@ -224,9 +237,22 @@ const QCMComponent = ({ questions }) => {
       </Card>
     ))}
    
-    <Button variant="contained" color="primary" onClick={handleReset} style={{ marginTop: '10px', display: 'block' }}>
-    أعد الاختبار
-    </Button>
+    <Grid container spacing={2}>
+      <Grid item xs={6}>
+        <Button variant="contained" color="primary" onClick={handleReset} style={{ marginTop: '10px', width: '100%' }}>
+        إختبارجديد
+        </Button>
+      </Grid>
+
+
+      <Grid item xs={6}>
+        <Button variant="contained" color="primary" onClick={handleResetSameQCM} style={{ marginTop: '10px', width: '100%' }}>
+        أعد الاختبار
+        </Button>
+      </Grid>
+
+    </Grid>
+
   </div>
 )}
 

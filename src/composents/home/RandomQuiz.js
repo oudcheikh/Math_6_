@@ -139,6 +139,18 @@ const QCMComponent = ({ questions, children, direction }) => {
     
   };
 
+  const handleResetSameQCM = () => {
+    setCurrentQuestionIndex(0);
+    setSelectedOption('');
+    setUserResponses([]);
+    setIsCorrect(null);
+    setAllQuestionsAnswered(false);
+    setFinalScore(null);
+    setScore(0);
+    setIsRotated(false);
+    
+  };
+
   return (
    
     <div className="app-container" style={{ direction: "ltr" }} >
@@ -171,7 +183,7 @@ const QCMComponent = ({ questions, children, direction }) => {
                       fullWidth
                       className="option-button"
                     >
-                      <StyledText1>{option.toLowerCase()}</StyledText1>
+                      <StyledText1>{option}</StyledText1>
                     </Button>
                   ))}
                 </div>
@@ -236,11 +248,11 @@ const QCMComponent = ({ questions, children, direction }) => {
           </div>
           {response.isCorrect ? (
             <FormulaText style={{ color: successColor }}>
-              Tu a choise la bonne réponse!
+              Tu a choisi la bonne réponse!
             </FormulaText>
           ) : (
             <FormulaText style={{ color: failureColor }}>
-             Tu a choisie une mauvaise  réponse! 
+             Tu a choisi une mauvaise  réponse! 
             </FormulaText>
           )}
           <FormulaText> {response.explanation} </FormulaText>
@@ -254,6 +266,14 @@ const QCMComponent = ({ questions, children, direction }) => {
           Nouveau Quiz
         </Button>
       </Grid>
+
+
+      <Grid item xs={6}>
+        <Button variant="contained" color="primary" onClick={handleResetSameQCM} style={{ marginTop: '10px', width: '100%' }}>
+          Refais Quiz
+        </Button>
+      </Grid>
+
       
     </Grid>
 

@@ -218,7 +218,7 @@ const Sauvegarder = () => {
 };
 
   return (
-    <div> 
+    <div style={{  padding: '2px 0', marginLeft: '20px', marginRight: '20px' }}> 
     <div className="profile-container">
             <div className="profile">
 

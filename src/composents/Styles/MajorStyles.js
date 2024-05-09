@@ -309,8 +309,6 @@ export const TriangleContainer = styled.div`
 `;
 
 
-
-
 export const StyledText1 = styled.p`
     padding: 0px 20px;
     display: flex;
