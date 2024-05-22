@@ -1,6 +1,7 @@
 // translations.js
 const translations = {
     fr: {
+      nameMajor:"Major+",
       Bonjour : "Bonjour",
       btinscription : "Inscription",
       txtinscription : "Pour accéder à nos services, veuillez vous inscrire.",
@@ -16,13 +17,15 @@ const translations = {
       mycompte : "mon comptes",
       devoirs :"mes devoirs",
       sinscrire:"s'inscrire",
-      msgscore : "Lancez votre entrainement sur l'une de matières pour augmenter ton score.",
+      msgscore : "Lancez votre entrainement sur l'une de matières pour augmenter votre score.\nLes questions se renouvellent en permanence.",
       votreScore : "Mon score est " ,
       msgqcmserepete :"Entraînement avec des questions renouvelées en permanence."
 
       // ... autres traductions
     },
     ar: {
+      
+      nameMajor:"+Major",
       Bonjour : "مرحبا",
       btinscription : "تسجيل",
       txtinscription : "للوصول إلى خدماتنا ، يرجى التسجيل.",
@@ -38,7 +41,8 @@ const translations = {
       moncompte : "حسابي",
       sinscrire:"تسجيل",
       
-      msgscore :"ابدأ التدريب على إحدى المواد لزيادة درجاتك",
+      msgscore : "ابدأ التدريب على إحدى المواد لزيادة درجاتك.\nالأسئلة تتجدد بإستمرار.\n" ,
+     
       votreScore : "درجاتي " ,
       msgqcmserepete : "تدرب مع أسئلة تتجدد باستمرار."
 

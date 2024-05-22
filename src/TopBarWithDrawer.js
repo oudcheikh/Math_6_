@@ -75,6 +75,43 @@ function TopBarWithDrawer({  toggleLanguage, t }) {
     toggleLanguage(event.target.value);
   };
 
+
+  const bookIcon = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="feather feather-book"
+    >
+      <path d="M4 19.5A2.5 2.5 0 016.5 17H20"></path>
+      <path d="M4 4.5A2.5 2.5 0 016.5 2H20v19H6.5A2.5 2.5 0 014 19.5z"></path>
+    </svg>
+  );
+
+  const userIcon = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="feather feather-user"
+    >
+      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+      <circle cx="12" cy="7" r="4"></circle>
+    </svg>
+  );
+
   return (
    
     <div className="top-bar" style={{ direction: "ltr" }}>
@@ -94,14 +131,14 @@ function TopBarWithDrawer({  toggleLanguage, t }) {
       </div>
 
 
-        <Drawer open={drawerOpen} onClose={toggleDrawer(false)}>
+      <Drawer open={drawerOpen} onClose={toggleDrawer(false)}>
         <List>
           <ListItem button onClick={goToHomePage}>
-            <ListItemIcon><BookIcon /></ListItemIcon>
+            <ListItemIcon>{bookIcon}</ListItemIcon>
             <ListItemText primary={t('myCourses')} />
           </ListItem>
           <ListItem button onClick={goToScoreboard}>
-            <ListItemIcon><AccountCircleIcon /></ListItemIcon>
+            <ListItemIcon>{userIcon}</ListItemIcon>
             <ListItemText primary={t('myScore')} />
           </ListItem>
         </List>

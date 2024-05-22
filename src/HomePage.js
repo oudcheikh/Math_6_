@@ -90,7 +90,7 @@ const handleNavigation = (matiere) => {
 
   return (
     <div style={{ textAlign: 'center', padding: '2px 0', marginLeft: '20px', marginRight: '20px' }} >
-      <h1>Major+</h1>
+      <h1>{t('nameMajor')}</h1>
       {user ? (
         <div>
           <p>{user.name} !</p>

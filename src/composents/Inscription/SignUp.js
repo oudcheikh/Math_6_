@@ -22,6 +22,8 @@ const SignUp = () => {
     const [firstvalide, setfirstValide] = useState(false);
     const [Lastnamevalide, setLastnameValide] = useState(false);
     const [phonevalide, setPhoneValide] = useState(false);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
     
     const [isFormValid, setIsFormValide] = useState(false);
     const [errors, setErrors] = useState({});
@@ -109,6 +111,8 @@ const SignUp = () => {
     //   setError('Veuillez remplir tous les champs');
     //   return;
     // }
+    setIsButtonDisabled(true);
+
 
     console.log("-------------------------- : ", user)
     console.log("------------------------------ ; ", phone, firstName, lastName, adresse, ecol)
@@ -258,7 +262,7 @@ const Sauvegarder = () => {
                         <br></br>
                         <br></br>
                     </div>
-                    <button className="save-button" onClick={handleSubmit}>{t('sinscrire')}</button>
+                    <button className="save-button" onClick={handleSubmit}  disabled={isButtonDisabled}>{t('sinscrire')}</button>
                     <div>
                         <br></br>
                         <br></br>
