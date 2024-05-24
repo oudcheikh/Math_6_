@@ -11,13 +11,13 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBJLzuoEHVaUZ79IGuFwN-palriSQoOz0o",
-    authDomain: "ncars-80f44.firebaseapp.com",
-    projectId: "ncars-80f44",
-    storageBucket: "ncars-80f44.appspot.com",
-    messagingSenderId: "16467823009",
-    appId: "1:16467823009:web:7cb10fc4051cde805d63e0",
-    measurementId: "G-DS8QW7MWZ6"
+  apiKey: "AIzaSyCT0dpJ3K3vte8luJ7LxA9JqswAfCUM-ig",
+  authDomain: "majorplus.firebaseapp.com",
+  projectId: "majorplus",
+  storageBucket: "majorplus.appspot.com",
+  messagingSenderId: "483916795794",
+  appId: "1:483916795794:web:dd78de778546005e1bfb4b",
+  measurementId: "G-8NK1MSJR2E"
   };
 
 
