@@ -28,7 +28,7 @@ const translations = {
       nameMajor:"+Major",
       Bonjour : "مرحبا",
       btinscription : "تسجيل",
-      txtinscription : "للوصول إلى خدماتنا ، يرجى التسجيل.",
+      txtinscription : "للوصول إلى خدماتنا، يرجى التسجيل.",
       Adress : "العنوان",
       phone : 'الهاتف',
       nom : "اسم العائلة",
