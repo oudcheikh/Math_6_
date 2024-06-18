@@ -79,7 +79,7 @@ const ThemeComponent = () => {
     PRPAHG006: "التاريخ و الجغرافيا",
     PRPAEI006: "التربية الإسلامية",
     PRPASN006: "Science Naturelle",
-    PRPAAR006: "العربية",
+   // PRPAAR006: "العربية",
     PRPAMA006: "Mathématiques",
     PRPAFR006: "Français"
   };
@@ -89,7 +89,7 @@ const ThemeComponent = () => {
       PRPAHG006: "/QuizTestHistoire", // histoire
       PRPAEI006 : "/QuizTestIslamic", // educationislamique
       PRPASN006: "/QuizTestScience", //  sciencenaturelle
-      PRPAAR006: "/QuizTestarab", // Arabe
+     // PRPAAR006: "/QuizTestarab", // Arabe
       PRPAMA006: "/QuizTestMath", // Mathématiques
       PRPAFR006: "/QuizTestFrançais" // Français
     };

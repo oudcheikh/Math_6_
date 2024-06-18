@@ -170,7 +170,7 @@ export const synchronizeWithFirestorebymatire = async (section, matieres) => {
   { firestore: 'qcm-prpama006', indexedDB: 'PRPAMA006' },
   { firestore: 'qcm-prpasn006', indexedDB: 'PRPASN006' },
     { firestore: 'qcm-prpaei006', indexedDB: 'PRPAEI006' },
-  { firestore: 'qcm-prpaar006', indexedDB: 'PRPAAR006' },
+  //{ firestore: 'qcm-prpaar006', indexedDB: 'PRPAAR006' },
   { firestore: 'qcm-prpahg006', indexedDB: 'PRPAHG006' }]
   collections = mapmatiere.filter(element => matieres.includes(element.indexedDB));
 
@@ -200,7 +200,7 @@ export const synchronizeWithFirestore = async (section) => {
   if (section == "prepa-arabe") {
     collections = [
       { firestore: 'qcm-prpaei006', indexedDB: 'PRPAEI006' },
-      { firestore: 'qcm-prpaar006', indexedDB: 'PRPAAR006' },
+      //{ firestore: 'qcm-prpaar006', indexedDB: 'PRPAAR006' },
       { firestore: 'qcm-prpahg006', indexedDB: 'PRPAHG006' },
     ];
   } else if (section == "prepa-français") { // Utilisation de else if pour une meilleure clarté
@@ -240,7 +240,7 @@ export const synchronizeWithFirestoreTotal = async () => {
       { section : "prepa-français", firestore: 'qcm-prpama006', indexedDB: 'PRPAMA006' },
       { section : "prepa-français", firestore: 'qcm-prpasn006', indexedDB: 'PRPASN006' },
       { section : "prepa-arabe", firestore: 'qcm-prpaei006', indexedDB: 'PRPAEI006' },
-      {section : "prepa-arabe", firestore: 'qcm-prpaar006', indexedDB: 'PRPAAR006' },
+      //{section : "prepa-arabe", firestore: 'qcm-prpaar006', indexedDB: 'PRPAAR006' },
       { section : "prepa-arabe", firestore: 'qcm-prpahg006', indexedDB: 'PRPAHG006' },
     ];
   
